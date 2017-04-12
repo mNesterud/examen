@@ -1,0 +1,45 @@
+﻿@model Examen.Models.QuestionAndResponses
+<p>@Model.Q.QuestionText</p>
+
+
+
+
+@*@for(int i = 0; i < Model.Responses.Count; i++)
+{
+    @Html.RadioButtonFor(m => m.Responses[i].ResponseText, Model.Responses[i].Id)
+    @Html.LabelFor()
+}*@
+
+
+
+
+    @foreach (var r in Model.Responses)
+    {
+        <div>
+            @Html.RadioButtonFor(m => m.SelectedResponseId, r.Id)
+            @Html.Label(r.ResponseText)
+        </div>
+    }
+<input type="button" onclick="NextQuestion(@Model.Q.Id)" value="Next">
+
+
+@*<script type="text/javascript">
+
+    function loadQuestion(input) {
+        $.ajax({
+            url: '/Questionnaire/Question/',
+            contentType: 'application/html; charset=utf-8',
+            data: { id: input },
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#question').html(result);
+
+            }
+        });
+        $("#start_btn").hide();
+    }
+    function NextQuestion(input) {
+        loadQuestion(input + 1)
+    }
+</script>*@

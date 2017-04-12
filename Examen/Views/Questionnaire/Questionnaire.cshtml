@@ -1,0 +1,36 @@
+﻿@model Examen.Models.QuestionnaireModel
+
+@{
+    ViewBag.Title = "Questionnaire";
+}
+
+<h2>Enkät</h2>
+
+<input id="start_btn" type="button" onclick="loadQuestion('1')" value="Starta enkäten" />
+<div id="question"></div>
+
+
+
+<script type="text/javascript">
+
+    function loadQuestion(input) {
+        $.ajax({
+            url: '/Questionnaire/Question/',
+            contentType: 'application/html; charset=utf-8',
+            data: { id: input },
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#question').html(result);
+
+            }
+        });
+        $("#start_btn").hide();
+    }
+    function NextQuestion(input) {
+
+        var next = input + 1;
+        loadQuestion(next);
+    }
+</script>
+
