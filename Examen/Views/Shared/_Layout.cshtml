@@ -7,12 +7,14 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @Styles.Render("~/Content/StyleSheet.css")
     </head>
     <body>
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                    <img src="~/Images/mittuniversitetet_logo.png" id="miun-logga"/>
+                    @*<p class="site-title">Examensarbete</p>*@
                 </div>
                 <div class="float-right">
                     <section id="login">
@@ -20,9 +22,12 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                            <li><a>Hem</a></li>
+                            <li><a>Om oss</a></li>
+                            <li><a>Kontakt</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -37,7 +42,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    @*<p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>*@
                 </div>
             </div>
         </footer>

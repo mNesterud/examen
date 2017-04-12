@@ -10,7 +10,7 @@ namespace Examen.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.Message = "Vad trevligt att du vill genomföra enkäten. Tack för att du stöttar vårt examensarbete!";
 
             return View();
         }

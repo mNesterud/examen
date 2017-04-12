@@ -1,0 +1,15 @@
+﻿body {
+}
+
+#menu li:hover{
+    cursor:pointer;
+}
+
+#miun-logga{
+    width:50%;
+    max-width:200px;
+    float:left;
+}
+.site-title{
+    float:left;
+}
