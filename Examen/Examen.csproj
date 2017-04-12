@@ -222,6 +222,7 @@
     <Compile Include="Models\Question.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\QuestionnaireModel.cs" />
     <Compile Include="Models\QuestionResponse.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
