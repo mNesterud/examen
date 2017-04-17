@@ -9,17 +9,23 @@ namespace Examen.Models
     {
         public Question Q { get; set; }
         public List<Response> Responses { get; set; }
+        public int QNumber { get; set; }
         public int SelectedResponseId { get; set; }
 
-        public QuestionAndResponses(int QuestionId)
+        public QuestionAndResponses(int Next)
         {
             using (DBEntities db = new DBEntities())
             {
-                Q = db.Questions.Where(x => x.Id == QuestionId).FirstOrDefault();
+                List<Question> All = db.Questions.ToList();
+                Q = All[Next - 1];
+                QNumber = Next;
+
+                //Q = db.Questions.Where(x => x.Id == QuestionId).FirstOrDefault();
+
                 Responses = new List<Response>();
                 foreach (QuestionResponse qr in db.QuestionResponses)
                 {
-                    if (qr.QuestionID == QuestionId)
+                    if (qr.QuestionID == Q.Id)
                     {
                         Responses.Add(db.Responses.Where(x => x.Id == qr.ResponseID).FirstOrDefault());
                     }

@@ -11,35 +11,24 @@
 }*@
 
 
-
-
-    @foreach (var r in Model.Responses)
+@if (Model.Q.MultipleChoise)
+{
+    foreach (var r in Model.Responses)
     {
         <div>
             @Html.RadioButtonFor(m => m.SelectedResponseId, r.Id)
             @Html.Label(r.ResponseText)
         </div>
     }
-<input type="button" onclick="NextQuestion(@Model.Q.Id)" value="Next">
+}
+else
+{
+    <div>
+        @Html.TextBox("textResponse")
+    </div>
+}
+
+    
+<input type="button" onclick="NextQuestion(@Model.QNumber)" value="Next">
 
 
-@*<script type="text/javascript">
-
-    function loadQuestion(input) {
-        $.ajax({
-            url: '/Questionnaire/Question/',
-            contentType: 'application/html; charset=utf-8',
-            data: { id: input },
-            type: 'GET',
-            dataType: 'html',
-            success: function (result) {
-                $('#question').html(result);
-
-            }
-        });
-        $("#start_btn").hide();
-    }
-    function NextQuestion(input) {
-        loadQuestion(input + 1)
-    }
-</script>*@

@@ -28,9 +28,11 @@
         $("#start_btn").hide();
     }
     function NextQuestion(input) {
-
+        var max = @(Model.AllQuestions.Count);
         var next = input + 1;
-        loadQuestion(next);
+        if(next <=  max){
+            loadQuestion(next)
+        }
     }
 </script>
 
