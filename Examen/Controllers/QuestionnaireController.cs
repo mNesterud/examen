@@ -21,5 +21,19 @@ namespace Examen.Controllers
 
             return PartialView("Question", qr);
         }
+
+        public PartialViewResult Question(string id, int rID, int qrID)
+        {
+            QuestionAndResponses qr = new QuestionAndResponses(Convert.ToInt16(id));
+
+            return PartialView("Question", qr);
+        }
+
+        public PartialViewResult Question(string id, int rID, int qID, string t)
+        {
+            QuestionAndResponses qr = new QuestionAndResponses(Convert.ToInt16(id));
+
+            return PartialView("Question", qr);
+        }
     }
 }
