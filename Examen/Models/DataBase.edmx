@@ -34,6 +34,35 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ResponseText" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="RQR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RespondentID" Type="int" Nullable="false" />
+          <Property Name="QuestionResponseID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RQT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RespondentID" Type="int" Nullable="false" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="Text" Type="int" />
+        </EntityType>
+        <Association Name="FK_QRID">
+          <End Role="QuestionResponse" Type="Self.QuestionResponse" Multiplicity="1" />
+          <End Role="RQR" Type="Self.RQR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionResponse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQR">
+              <PropertyRef Name="QuestionResponseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_QuestionId">
           <End Role="Question" Type="Self.Question" Multiplicity="1" />
           <End Role="QuestionResponse" Type="Self.QuestionResponse" Multiplicity="*" />
@@ -43,6 +72,42 @@
             </Principal>
             <Dependent Role="QuestionResponse">
               <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionId_">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="RQT" Type="Self.RQT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQT">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RespondentId">
+          <End Role="Respondent" Type="Self.Respondent" Multiplicity="1" />
+          <End Role="RQR" Type="Self.RQR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Respondent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQR">
+              <PropertyRef Name="RespondentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RespondentId_">
+          <End Role="Respondent" Type="Self.Respondent" Multiplicity="1" />
+          <End Role="RQT" Type="Self.RQT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Respondent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQT">
+              <PropertyRef Name="RespondentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -63,9 +128,27 @@
           <EntitySet Name="QuestionResponse" EntityType="Self.QuestionResponse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Respondent" EntityType="Self.Respondent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Response" EntityType="Self.Response" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RQR" EntityType="Self.RQR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RQT" EntityType="Self.RQT" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_QRID" Association="Self.FK_QRID">
+            <End Role="QuestionResponse" EntitySet="QuestionResponse" />
+            <End Role="RQR" EntitySet="RQR" />
+          </AssociationSet>
           <AssociationSet Name="FK_QuestionId" Association="Self.FK_QuestionId">
             <End Role="Question" EntitySet="Question" />
             <End Role="QuestionResponse" EntitySet="QuestionResponse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionId_" Association="Self.FK_QuestionId_">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="RQT" EntitySet="RQT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RespondentId" Association="Self.FK_RespondentId">
+            <End Role="Respondent" EntitySet="Respondent" />
+            <End Role="RQR" EntitySet="RQR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RespondentId_" Association="Self.FK_RespondentId_">
+            <End Role="Respondent" EntitySet="Respondent" />
+            <End Role="RQT" EntitySet="RQT" />
           </AssociationSet>
           <AssociationSet Name="FK_ResponseId" Association="Self.FK_ResponseId">
             <End Role="Response" EntitySet="Response" />
@@ -89,6 +172,24 @@
             <End Role="Response" EntitySet="Responses" />
             <End Role="QuestionResponse" EntitySet="QuestionResponses" />
           </AssociationSet>
+          <EntitySet Name="RQRs" EntityType="informatikexamenModel.RQR" />
+          <EntitySet Name="RQTs" EntityType="informatikexamenModel.RQT" />
+          <AssociationSet Name="FK_QuestionId_" Association="informatikexamenModel.FK_QuestionId_">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="RQT" EntitySet="RQTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QRID" Association="informatikexamenModel.FK_QRID">
+            <End Role="QuestionResponse" EntitySet="QuestionResponses" />
+            <End Role="RQR" EntitySet="RQRs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RespondentId" Association="informatikexamenModel.FK_RespondentId">
+            <End Role="Respondent" EntitySet="Respondents" />
+            <End Role="RQR" EntitySet="RQRs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RespondentId_" Association="informatikexamenModel.FK_RespondentId_">
+            <End Role="Respondent" EntitySet="Respondents" />
+            <End Role="RQT" EntitySet="RQTs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Question">
           <Key>
@@ -98,12 +199,15 @@
           <Property Name="QuestionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MultipleChoise" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="QuestionResponses" Relationship="informatikexamenModel.FK_QuestionId" FromRole="Question" ToRole="QuestionResponse" />
+          <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_QuestionId_" FromRole="Question" ToRole="RQT" />
         </EntityType>
         <EntityType Name="Respondent">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="RQRs" Relationship="informatikexamenModel.FK_RespondentId" FromRole="Respondent" ToRole="RQR" />
+          <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="Respondent" ToRole="RQT" />
         </EntityType>
         <EntityType Name="Response">
           <Key>
@@ -122,6 +226,7 @@
           <Property Name="ResponseID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Question" Relationship="informatikexamenModel.FK_QuestionId" FromRole="QuestionResponse" ToRole="Question" />
           <NavigationProperty Name="Response" Relationship="informatikexamenModel.FK_ResponseId" FromRole="QuestionResponse" ToRole="Response" />
+          <NavigationProperty Name="RQRs" Relationship="informatikexamenModel.FK_QRID" FromRole="QuestionResponse" ToRole="RQR" />
         </EntityType>
         <Association Name="FK_QuestionId">
           <End Type="informatikexamenModel.Question" Role="Question" Multiplicity="1" />
@@ -144,6 +249,75 @@
             </Principal>
             <Dependent Role="QuestionResponse">
               <PropertyRef Name="ResponseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RQR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RespondentID" Type="Int32" Nullable="false" />
+          <Property Name="QuestionResponseID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="QuestionResponse" Relationship="informatikexamenModel.FK_QRID" FromRole="RQR" ToRole="QuestionResponse" />
+          <NavigationProperty Name="Respondent" Relationship="informatikexamenModel.FK_RespondentId" FromRole="RQR" ToRole="Respondent" />
+        </EntityType>
+        <EntityType Name="RQT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RespondentID" Type="Int32" Nullable="false" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="Int32" />
+          <NavigationProperty Name="Question" Relationship="informatikexamenModel.FK_QuestionId_" FromRole="RQT" ToRole="Question" />
+          <NavigationProperty Name="Respondent" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="RQT" ToRole="Respondent" />
+        </EntityType>
+        <Association Name="FK_QuestionId_">
+          <End Type="informatikexamenModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="informatikexamenModel.RQT" Role="RQT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQT">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QRID">
+          <End Type="informatikexamenModel.QuestionResponse" Role="QuestionResponse" Multiplicity="1" />
+          <End Type="informatikexamenModel.RQR" Role="RQR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionResponse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQR">
+              <PropertyRef Name="QuestionResponseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RespondentId">
+          <End Type="informatikexamenModel.Respondent" Role="Respondent" Multiplicity="1" />
+          <End Type="informatikexamenModel.RQR" Role="RQR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Respondent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQR">
+              <PropertyRef Name="RespondentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RespondentId_">
+          <End Type="informatikexamenModel.Respondent" Role="Respondent" Multiplicity="1" />
+          <End Type="informatikexamenModel.RQT" Role="RQT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Respondent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQT">
+              <PropertyRef Name="RespondentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -182,6 +356,25 @@
               <MappingFragment StoreEntitySet="QuestionResponse">
                 <ScalarProperty Name="ResponseID" ColumnName="ResponseID" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RQRs">
+            <EntityTypeMapping TypeName="informatikexamenModel.RQR">
+              <MappingFragment StoreEntitySet="RQR">
+                <ScalarProperty Name="QuestionResponseID" ColumnName="QuestionResponseID" />
+                <ScalarProperty Name="RespondentID" ColumnName="RespondentID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RQTs">
+            <EntityTypeMapping TypeName="informatikexamenModel.RQT">
+              <MappingFragment StoreEntitySet="RQT">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="RespondentID" ColumnName="RespondentID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
