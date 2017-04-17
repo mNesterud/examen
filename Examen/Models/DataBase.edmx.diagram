@@ -11,6 +11,12 @@
         <EntityTypeShape EntityType="informatikexamenModel.QuestionResponse" Width="1.5" PointX="7.125" PointY="2.125" />
         <AssociationConnector Association="informatikexamenModel.FK_QuestionId" />
         <AssociationConnector Association="informatikexamenModel.FK_ResponseId" />
+        <EntityTypeShape EntityType="informatikexamenModel.RQR" Width="1.5" PointX="9.375" PointY="4.375" />
+        <EntityTypeShape EntityType="informatikexamenModel.RQT" Width="1.5" PointX="7.125" PointY="0.75" />
+        <AssociationConnector Association="informatikexamenModel.FK_QuestionId_" />
+        <AssociationConnector Association="informatikexamenModel.FK_QRID" />
+        <AssociationConnector Association="informatikexamenModel.FK_RespondentId" />
+        <AssociationConnector Association="informatikexamenModel.FK_RespondentId_" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

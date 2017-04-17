@@ -14,6 +14,18 @@ namespace Examen.Models
     
     public partial class Respondent
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Respondent()
+        {
+            this.RQRs = new HashSet<RQR>();
+            this.RQTs = new HashSet<RQT>();
+        }
+    
         public int Id { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RQR> RQRs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RQT> RQTs { get; set; }
     }
 }

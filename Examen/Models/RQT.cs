@@ -12,21 +12,14 @@ namespace Examen.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class QuestionResponse
+    public partial class RQT
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public QuestionResponse()
-        {
-            this.RQRs = new HashSet<RQR>();
-        }
-    
         public int Id { get; set; }
+        public int RespondentID { get; set; }
         public int QuestionID { get; set; }
-        public int ResponseID { get; set; }
+        public Nullable<int> Text { get; set; }
     
         public virtual Question Question { get; set; }
-        public virtual Response Response { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RQR> RQRs { get; set; }
+        public virtual Respondent Respondent { get; set; }
     }
 }

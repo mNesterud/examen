@@ -29,5 +29,7 @@ namespace Examen.Models
         public virtual DbSet<Respondent> Respondents { get; set; }
         public virtual DbSet<Response> Responses { get; set; }
         public virtual DbSet<QuestionResponse> QuestionResponses { get; set; }
+        public virtual DbSet<RQR> RQRs { get; set; }
+        public virtual DbSet<RQT> RQTs { get; set; }
     }
 }

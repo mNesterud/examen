@@ -18,6 +18,7 @@ namespace Examen.Models
         public Question()
         {
             this.QuestionResponses = new HashSet<QuestionResponse>();
+            this.RQTs = new HashSet<RQT>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace Examen.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionResponse> QuestionResponses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RQT> RQTs { get; set; }
     }
 }

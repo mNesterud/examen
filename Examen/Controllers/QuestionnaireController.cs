@@ -18,11 +18,6 @@ namespace Examen.Controllers
         public PartialViewResult Question(string id)
         {
             QuestionAndResponses qr = new QuestionAndResponses(Convert.ToInt16(id));
-            //Question q = new Question();
-
-            //using (DBEntities db = new DBEntities()){
-            //    q = db.Questions.Where(x => x.Id.ToString() == id).FirstOrDefault();
-            //}
 
             return PartialView("Question", qr);
         }
