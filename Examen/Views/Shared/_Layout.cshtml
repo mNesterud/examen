@@ -8,6 +8,17 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         @Styles.Render("~/Content/StyleSheet.css")
+
+        @{DayOfWeek today = DateTime.Now.DayOfWeek;
+                if(today == DayOfWeek.Tuesday)
+                { 
+                    @Styles.Render("~/Content/GoodUIStylesheet.css");
+                }
+                else
+                {
+                    @Styles.Render("~/Content/BadUIStylesheet.css"); 
+                }
+            }
     </head>
     <body>
         <header>
