@@ -11,24 +11,58 @@
 }*@
 
 
-@if (Model.Q.MultipleChoise)
-{
-    foreach (var r in Model.Responses)
+    
+
+    @if (Model.Q.MultipleChoise)
+    {
+        foreach (var r in Model.Responses)
+        {
+            <div>
+                @Html.RadioButtonFor(m => m.SelectedResponseId, r.Id)@Html.Label(r.ResponseText)
+
+            </div>
+        }
+        <input type="button" onclick="SaveChoice()" value="Nästa">
+    }
+    else
     {
         <div>
-            @Html.RadioButtonFor(m => m.SelectedResponseId, r.Id)
-            @Html.Label(r.ResponseText)
+            <input type="text" id="textResponse" />
         </div>
+        <input type="button" onclick="SaveText()" value="Nästa">
     }
-}
-else
-{
-    <div>
-        @Html.TextBox("textResponse")
-    </div>
-}
-
-    
-<input type="button" onclick="NextQuestion(@Model.QNumber)" value="Next">
 
 
+
+
+<script type="text/javascript">
+
+    function SaveChoice() {
+        var selected = $('[name="SelectedResponseId"]:checked').val();
+        if(selected != null)
+        {
+            $.ajax({
+                type: 'POST',
+                url: '/Questionnaire/SaveChoice/',
+                data: { rID: selected, qID: @Model.Q.Id },
+                success: function (result) {
+                    NextQuestion(@Model.QNumber)
+                }
+            });
+        }
+    }
+    function SaveText() {
+        var text = $('#textResponse').val();
+        if(text != null && text != "")
+        {
+            $.ajax({
+                type: 'POST',
+                url: '/Questionnaire/SaveText/',
+                data: { t: text, qID: @Model.Q.Id },
+                success: function (result) {
+                    NextQuestion(@Model.QNumber)
+                }
+            });
+        }
+    }
+</script>

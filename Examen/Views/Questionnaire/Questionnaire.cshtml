@@ -27,12 +27,46 @@
         });
         $("#start_btn").hide();
     }
+    
+    
+    //function loadQuestionAndSaveChoice(input, respondentID, questionresponseID) {
+    //    $.ajax({
+    //        url: '/Questionnaire/QuestionSaveChoice/',
+    //        contentType: 'application/html; charset=utf-8',
+    //        data: { id: input, rID: respondentID, qrID: questionresponseID},
+    //        type: 'GET',
+    //        dataType: 'html',
+    //        success: function (result) {
+    //            $('#question').html(result);
+
+    //        }
+    //    });
+    //    $("#start_btn").hide();
+    //}
+    //function loadQuestionAndSaveText(input, respondentID, questionID, text) {
+    //    $.ajax({
+    //        url: '/Questionnaire/QuestionSaveText/',
+    //        contentType: 'application/html; charset=utf-8',
+    //        data: { id: input, rID: respondentID, qID: questionID, t: text},
+    //        type: 'GET',
+    //        dataType: 'html',
+    //        success: function (result) {
+    //            $('#question').html(result);
+
+    //        }
+    //    });
+    //    $("#start_btn").hide();
+    //}
     function NextQuestion(input) {
         var max = @(Model.AllQuestions.Count);
         var next = input + 1;
+        
+        
         if(next <=  max){
-            loadQuestion(next)
+            SaveChoice();
+            loadQuestion(next);
         }
+        
     }
     
 </script>
