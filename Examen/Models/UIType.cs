@@ -12,22 +12,19 @@ namespace Examen.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Respondent
+    public partial class UIType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Respondent()
+        public UIType()
         {
-            this.RQRs = new HashSet<RQR>();
-            this.RQTs = new HashSet<RQT>();
+            this.Respondents = new HashSet<Respondent>();
         }
     
         public int Id { get; set; }
-        public int UITypeID { get; set; }
+        public string Name { get; set; }
+        public int Count { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RQR> RQRs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RQT> RQTs { get; set; }
-        public virtual UIType UIType { get; set; }
+        public virtual ICollection<Respondent> Respondents { get; set; }
     }
 }

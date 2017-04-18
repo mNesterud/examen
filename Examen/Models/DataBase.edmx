@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="informatikexamenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="1" />
+        </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="Id" />
@@ -26,6 +33,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UITypeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Response">
           <Key>
@@ -50,6 +58,14 @@
           <Property Name="RespondentID" Type="int" Nullable="false" />
           <Property Name="QuestionID" Type="int" Nullable="false" />
           <Property Name="Text" Type="int" />
+        </EntityType>
+        <EntityType Name="UIType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_QRID">
           <End Role="QuestionResponse" Type="Self.QuestionResponse" Multiplicity="1" />
@@ -84,6 +100,18 @@
             </Principal>
             <Dependent Role="RQT">
               <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respondent_ToUIType">
+          <End Role="UIType" Type="Self.UIType" Multiplicity="1" />
+          <End Role="Respondent" Type="Self.Respondent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UIType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Respondent">
+              <PropertyRef Name="UITypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -124,12 +152,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="informatikexamenModelStoreContainer">
+          <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionResponse" EntityType="Self.QuestionResponse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Respondent" EntityType="Self.Respondent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Response" EntityType="Self.Response" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RQR" EntityType="Self.RQR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RQT" EntityType="Self.RQT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UIType" EntityType="Self.UIType" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_QRID" Association="Self.FK_QRID">
             <End Role="QuestionResponse" EntitySet="QuestionResponse" />
             <End Role="RQR" EntitySet="RQR" />
@@ -141,6 +171,10 @@
           <AssociationSet Name="FK_QuestionId_" Association="Self.FK_QuestionId_">
             <End Role="Question" EntitySet="Question" />
             <End Role="RQT" EntitySet="RQT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respondent_ToUIType" Association="Self.FK_Respondent_ToUIType">
+            <End Role="UIType" EntitySet="UIType" />
+            <End Role="Respondent" EntitySet="Respondent" />
           </AssociationSet>
           <AssociationSet Name="FK_RespondentId" Association="Self.FK_RespondentId">
             <End Role="Respondent" EntitySet="Respondent" />
@@ -190,6 +224,12 @@
             <End Role="Respondent" EntitySet="Respondents" />
             <End Role="RQT" EntitySet="RQTs" />
           </AssociationSet>
+          <EntitySet Name="Emails" EntityType="informatikexamenModel.Email" />
+          <EntitySet Name="UITypes" EntityType="informatikexamenModel.UIType" />
+          <AssociationSet Name="FK_Respondent_ToUIType" Association="informatikexamenModel.FK_Respondent_ToUIType">
+            <End Role="UIType" EntitySet="UITypes" />
+            <End Role="Respondent" EntitySet="Respondents" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Question">
           <Key>
@@ -208,6 +248,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="RQRs" Relationship="informatikexamenModel.FK_RespondentId" FromRole="Respondent" ToRole="RQR" />
           <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="Respondent" ToRole="RQT" />
+          <Property Name="UITypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UIType" Relationship="informatikexamenModel.FK_Respondent_ToUIType" FromRole="Respondent" ToRole="UIType" />
         </EntityType>
         <EntityType Name="Response">
           <Key>
@@ -321,6 +363,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UIType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Respondents" Relationship="informatikexamenModel.FK_Respondent_ToUIType" FromRole="UIType" ToRole="Respondent" />
+        </EntityType>
+        <Association Name="FK_Respondent_ToUIType">
+          <End Type="informatikexamenModel.UIType" Role="UIType" Multiplicity="1" />
+          <End Type="informatikexamenModel.Respondent" Role="Respondent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UIType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Respondent">
+              <PropertyRef Name="UITypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -339,6 +409,7 @@
           <EntitySetMapping Name="Respondents">
             <EntityTypeMapping TypeName="informatikexamenModel.Respondent">
               <MappingFragment StoreEntitySet="Respondent">
+                <ScalarProperty Name="UITypeID" ColumnName="UITypeID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -375,6 +446,23 @@
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
                 <ScalarProperty Name="RespondentID" ColumnName="RespondentID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="informatikexamenModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UITypes">
+            <EntityTypeMapping TypeName="informatikexamenModel.UIType">
+              <MappingFragment StoreEntitySet="UIType">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
