@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Examen.Controllers
 {
-    public class QuestionnaireController : Controller
+    public class QuestionnaireController : BaseController
     {
         // GET: Questionnaire
         public ActionResult Questionnaire()

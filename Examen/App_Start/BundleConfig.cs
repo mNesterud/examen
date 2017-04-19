@@ -39,8 +39,8 @@ namespace Examen
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/site.css",
-                "~/Content/StyleSheet.css",
-                uiType));
+                "~/Content/StyleSheet.css"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
