@@ -17,6 +17,7 @@ namespace Examen.Models
         public int Id { get; set; }
         public int RespondentID { get; set; }
         public int QuestionResponseID { get; set; }
+        public Nullable<decimal> Time { get; set; }
     
         public virtual QuestionResponse QuestionResponse { get; set; }
         public virtual Respondent Respondent { get; set; }

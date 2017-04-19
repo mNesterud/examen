@@ -7,6 +7,7 @@
 <h2>Enkät</h2>
 
 <input id="start_btn" type="button" onclick="loadQuestion('1')" value="Starta enkäten" />
+<input id="email_btn" type="button" onclick="goToEmailPage()" value="Email Test" />
 <div id="question"></div>
 
 
@@ -63,11 +64,23 @@
         
         
         if(next <=  max){
-            SaveChoice();
             loadQuestion(next);
         }
-        
+        else{
+            goToEmailPage();
+        }
     }
-    
+
+    function goToEmailPage() {
+        $.ajax({
+            url: '/Questionnaire/EmailPage/',
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#question').html(result);
+            }
+        });
+    }
 </script>
 

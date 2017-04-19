@@ -44,7 +44,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/Questionnaire/SaveChoice/',
-                data: { rID: selected, qID: @Model.Q.Id },
+                data: { rID: selected, qID: @Model.Q.Id, time: '44,223223' },
                 success: function (result) {
                     NextQuestion(@Model.QNumber)
                 }
@@ -58,7 +58,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/Questionnaire/SaveText/',
-                data: { t: text, qID: @Model.Q.Id },
+                data: { t: text, qID: @Model.Q.Id, time: '23,4' },
                 success: function (result) {
                     NextQuestion(@Model.QNumber)
                 }

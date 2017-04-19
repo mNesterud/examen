@@ -23,11 +23,12 @@ namespace Examen.Models
     
         public int Id { get; set; }
         public int UITypeID { get; set; }
+        public Nullable<decimal> TotalTime { get; set; }
     
+        public virtual UIType UIType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RQR> RQRs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RQT> RQTs { get; set; }
-        public virtual UIType UIType { get; set; }
     }
 }

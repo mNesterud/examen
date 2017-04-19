@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Mail" Type="nvarchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="Question">
@@ -34,6 +34,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UITypeID" Type="int" Nullable="false" />
+          <Property Name="TotalTime" Type="decimal" Precision="18" Scale="10" />
         </EntityType>
         <EntityType Name="Response">
           <Key>
@@ -49,6 +50,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RespondentID" Type="int" Nullable="false" />
           <Property Name="QuestionResponseID" Type="int" Nullable="false" />
+          <Property Name="Time" Type="decimal" Precision="18" Scale="10" />
         </EntityType>
         <EntityType Name="RQT">
           <Key>
@@ -57,14 +59,15 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RespondentID" Type="int" Nullable="false" />
           <Property Name="QuestionID" Type="int" Nullable="false" />
-          <Property Name="Text" Type="int" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="Time" Type="decimal" Precision="18" Scale="10" />
         </EntityType>
         <EntityType Name="UIType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_QRID">
@@ -195,7 +198,6 @@
       <Schema Namespace="informatikexamenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Questions" EntityType="informatikexamenModel.Question" />
-          <EntitySet Name="Respondents" EntityType="informatikexamenModel.Respondent" />
           <EntitySet Name="Responses" EntityType="informatikexamenModel.Response" />
           <EntitySet Name="QuestionResponses" EntityType="informatikexamenModel.QuestionResponse" />
           <AssociationSet Name="FK_QuestionId" Association="informatikexamenModel.FK_QuestionId">
@@ -206,6 +208,8 @@
             <End Role="Response" EntitySet="Responses" />
             <End Role="QuestionResponse" EntitySet="QuestionResponses" />
           </AssociationSet>
+          <EntitySet Name="UITypes" EntityType="informatikexamenModel.UIType" />
+          <EntitySet Name="Respondents" EntityType="informatikexamenModel.Respondent" />
           <EntitySet Name="RQRs" EntityType="informatikexamenModel.RQR" />
           <EntitySet Name="RQTs" EntityType="informatikexamenModel.RQT" />
           <AssociationSet Name="FK_QuestionId_" Association="informatikexamenModel.FK_QuestionId_">
@@ -216,6 +220,10 @@
             <End Role="QuestionResponse" EntitySet="QuestionResponses" />
             <End Role="RQR" EntitySet="RQRs" />
           </AssociationSet>
+          <AssociationSet Name="FK_Respondent_ToUIType" Association="informatikexamenModel.FK_Respondent_ToUIType">
+            <End Role="UIType" EntitySet="UITypes" />
+            <End Role="Respondent" EntitySet="Respondents" />
+          </AssociationSet>
           <AssociationSet Name="FK_RespondentId" Association="informatikexamenModel.FK_RespondentId">
             <End Role="Respondent" EntitySet="Respondents" />
             <End Role="RQR" EntitySet="RQRs" />
@@ -225,12 +233,7 @@
             <End Role="RQT" EntitySet="RQTs" />
           </AssociationSet>
           <EntitySet Name="Emails" EntityType="informatikexamenModel.Email" />
-          <EntitySet Name="UITypes" EntityType="informatikexamenModel.UIType" />
-          <AssociationSet Name="FK_Respondent_ToUIType" Association="informatikexamenModel.FK_Respondent_ToUIType">
-            <End Role="UIType" EntitySet="UITypes" />
-            <End Role="Respondent" EntitySet="Respondents" />
-          </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="Id" />
@@ -240,16 +243,6 @@
           <Property Name="MultipleChoise" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="QuestionResponses" Relationship="informatikexamenModel.FK_QuestionId" FromRole="Question" ToRole="QuestionResponse" />
           <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_QuestionId_" FromRole="Question" ToRole="RQT" />
-        </EntityType>
-        <EntityType Name="Respondent">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="RQRs" Relationship="informatikexamenModel.FK_RespondentId" FromRole="Respondent" ToRole="RQR" />
-          <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="Respondent" ToRole="RQT" />
-          <Property Name="UITypeID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UIType" Relationship="informatikexamenModel.FK_Respondent_ToUIType" FromRole="Respondent" ToRole="UIType" />
         </EntityType>
         <EntityType Name="Response">
           <Key>
@@ -294,6 +287,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UIType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Respondents" Relationship="informatikexamenModel.FK_Respondent_ToUIType" FromRole="UIType" ToRole="Respondent" />
+        </EntityType>
+        <EntityType Name="Respondent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UITypeID" Type="Int32" Nullable="false" />
+          <Property Name="TotalTime" Type="Decimal" Precision="18" Scale="10" />
+          <NavigationProperty Name="UIType" Relationship="informatikexamenModel.FK_Respondent_ToUIType" FromRole="Respondent" ToRole="UIType" />
+          <NavigationProperty Name="RQRs" Relationship="informatikexamenModel.FK_RespondentId" FromRole="Respondent" ToRole="RQR" />
+          <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="Respondent" ToRole="RQT" />
+        </EntityType>
         <EntityType Name="RQR">
           <Key>
             <PropertyRef Name="Id" />
@@ -301,6 +314,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RespondentID" Type="Int32" Nullable="false" />
           <Property Name="QuestionResponseID" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="Decimal" Precision="18" Scale="10" />
           <NavigationProperty Name="QuestionResponse" Relationship="informatikexamenModel.FK_QRID" FromRole="RQR" ToRole="QuestionResponse" />
           <NavigationProperty Name="Respondent" Relationship="informatikexamenModel.FK_RespondentId" FromRole="RQR" ToRole="Respondent" />
         </EntityType>
@@ -311,7 +325,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RespondentID" Type="Int32" Nullable="false" />
           <Property Name="QuestionID" Type="Int32" Nullable="false" />
-          <Property Name="Text" Type="Int32" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="Decimal" Precision="18" Scale="10" />
           <NavigationProperty Name="Question" Relationship="informatikexamenModel.FK_QuestionId_" FromRole="RQT" ToRole="Question" />
           <NavigationProperty Name="Respondent" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="RQT" ToRole="Respondent" />
         </EntityType>
@@ -336,6 +351,18 @@
             </Principal>
             <Dependent Role="RQR">
               <PropertyRef Name="QuestionResponseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respondent_ToUIType">
+          <End Type="informatikexamenModel.UIType" Role="UIType" Multiplicity="1" />
+          <End Type="informatikexamenModel.Respondent" Role="Respondent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UIType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Respondent">
+              <PropertyRef Name="UITypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -367,30 +394,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Mail" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="UIType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Respondents" Relationship="informatikexamenModel.FK_Respondent_ToUIType" FromRole="UIType" ToRole="Respondent" />
-        </EntityType>
-        <Association Name="FK_Respondent_ToUIType">
-          <End Type="informatikexamenModel.UIType" Role="UIType" Multiplicity="1" />
-          <End Type="informatikexamenModel.Respondent" Role="Respondent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UIType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Respondent">
-              <PropertyRef Name="UITypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -402,14 +408,6 @@
               <MappingFragment StoreEntitySet="Question">
                 <ScalarProperty Name="MultipleChoise" ColumnName="MultipleChoise" />
                 <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Respondents">
-            <EntityTypeMapping TypeName="informatikexamenModel.Respondent">
-              <MappingFragment StoreEntitySet="Respondent">
-                <ScalarProperty Name="UITypeID" ColumnName="UITypeID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -431,9 +429,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UITypes">
+            <EntityTypeMapping TypeName="informatikexamenModel.UIType">
+              <MappingFragment StoreEntitySet="UIType">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Respondents">
+            <EntityTypeMapping TypeName="informatikexamenModel.Respondent">
+              <MappingFragment StoreEntitySet="Respondent">
+                <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
+                <ScalarProperty Name="UITypeID" ColumnName="UITypeID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="RQRs">
             <EntityTypeMapping TypeName="informatikexamenModel.RQR">
               <MappingFragment StoreEntitySet="RQR">
+                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="QuestionResponseID" ColumnName="QuestionResponseID" />
                 <ScalarProperty Name="RespondentID" ColumnName="RespondentID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -443,6 +460,7 @@
           <EntitySetMapping Name="RQTs">
             <EntityTypeMapping TypeName="informatikexamenModel.RQT">
               <MappingFragment StoreEntitySet="RQT">
+                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
                 <ScalarProperty Name="RespondentID" ColumnName="RespondentID" />
@@ -454,15 +472,6 @@
             <EntityTypeMapping TypeName="informatikexamenModel.Email">
               <MappingFragment StoreEntitySet="Email">
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UITypes">
-            <EntityTypeMapping TypeName="informatikexamenModel.UIType">
-              <MappingFragment StoreEntitySet="UIType">
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

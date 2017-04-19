@@ -375,6 +375,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Questionnaire\Questionnaire.cshtml" />
     <Content Include="Views\Questionnaire\Question.cshtml" />
+    <Content Include="Views\Questionnaire\_EmailPage.cshtml" />
+    <Content Include="Views\Questionnaire\ThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
