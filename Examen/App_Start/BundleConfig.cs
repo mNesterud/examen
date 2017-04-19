@@ -1,5 +1,7 @@
-﻿using System.Web;
+﻿using Examen.Models;
+using System.Web;
 using System.Web.Optimization;
+using System.Linq;
 
 namespace Examen
 {
@@ -23,7 +25,22 @@ namespace Examen
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+
+
+            string uiType = "";
+            using (DBEntities db = new DBEntities())
+            {
+
+                UIType ui = new UIType();
+                ui = db.UITypes.OrderBy(x => x.Count).FirstOrDefault();
+                uiType = ui.Name;
+
+            }
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/site.css",
+                "~/Content/StyleSheet.css",
+                uiType));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

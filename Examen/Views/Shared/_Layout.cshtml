@@ -7,9 +7,9 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
-        @Styles.Render("~/Content/StyleSheet.css")
+        @*@Styles.Render("~/Content/StyleSheet.css")*@
 
-        @{DayOfWeek today = DateTime.Now.DayOfWeek;
+        @*@{DayOfWeek today = DateTime.Now.DayOfWeek;
                 if(today == DayOfWeek.Tuesday)
                 { 
                     @Styles.Render("~/Content/GoodUIStylesheet.css");
@@ -18,7 +18,12 @@
                 {
                     @Styles.Render("~/Content/BadUIStylesheet.css"); 
                 }
-            }
+            }*@
+        @*@{using (Examen.Controllers.BaseController bc = new Examen.Controllers.BaseController())
+        {          
+            Styles.Render(ViewBag.UIType);
+        }}*@
+
     </head>
     <body>
         <header>
