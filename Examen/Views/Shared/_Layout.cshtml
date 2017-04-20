@@ -9,6 +9,7 @@
         @Styles.Render(ViewBag.UIType)
         @Scripts.Render("~/bundles/modernizr")
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/javascript")
         @*@Styles.Render("~/Content/StyleSheet.css")*@
 
         @*@{DayOfWeek today = DateTime.Now.DayOfWeek;
@@ -36,7 +37,7 @@
                 </div>
                 <div class="float-right">
                     <section id="login">
-                            @Html.ActionLink("Logga in", "Login", "Login", null, new { @id = "login_button" })
+                            @Html.ActionLink("Logga in", "Login", "Login", null, new { @id = "login_link"})
                         
                     </section>
                     <nav>
@@ -70,3 +71,31 @@
         @RenderSection("scripts", required: false)
     </body>
 </html>
+<script>
+        function sendTime(isLoginFind) {
+            var timeMs = responseTime();
+            @using Examen.Models{
+                var respondentID = @(((Respondent)Session["Respondent"]).Id);
+            }
+            
+            $.ajax({
+                type: 'POST',
+                url: '/Home/SaveTime/',
+                data: { rID: respondentID, time: timeMs, loginFind: isLoginFind },
+                success: function (result) {
+
+                }
+            });
+        }
+
+        function addClickEvent() {
+            var loginLink = document.getElementById("login_link");
+
+            loginLink.addEventListener("click", function(){
+                sendTime("TRUE")});
+            
+        }
+        addClickEvent();
+
+
+</script>

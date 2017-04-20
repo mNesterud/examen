@@ -38,14 +38,20 @@
 
 <script type="text/javascript">
 
+    $(document).ready(startTime());
+
+    
+
     function SaveChoice() {
+        var timeMs = responseTime();
+
         var selected = $('[name="SelectedResponseId"]:checked').val();
         if(selected != null)
         {
             $.ajax({
                 type: 'POST',
                 url: '/Questionnaire/SaveChoice/',
-                data: { rID: selected, qID: @Model.Q.Id, time: '44,223223' },
+                data: { rID: selected, qID: @Model.Q.Id, time: timeMs },
                 success: function (result) {
                     NextQuestion(@Model.QNumber)
                 }
@@ -53,13 +59,16 @@
         }
     }
     function SaveText() {
+
+        var timeMs = responseTime();
+
         var text = $('#textResponse').val();
         if(text != null && text != "")
         {
             $.ajax({
                 type: 'POST',
                 url: '/Questionnaire/SaveText/',
-                data: { t: text, qID: @Model.Q.Id, time: '23,4' },
+                data: { t: text, qID: @Model.Q.Id, time: timeMs },
                 success: function (result) {
                     NextQuestion(@Model.QNumber)
                 }

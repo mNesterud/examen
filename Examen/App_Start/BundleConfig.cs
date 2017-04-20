@@ -25,6 +25,9 @@ namespace Examen
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/javascript").Include(
+                        "~/Scripts/site.js"));
+
 
 
             string uiType = "";
