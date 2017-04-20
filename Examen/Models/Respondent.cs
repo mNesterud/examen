@@ -24,6 +24,8 @@ namespace Examen.Models
         public int Id { get; set; }
         public int UITypeID { get; set; }
         public Nullable<decimal> TotalTime { get; set; }
+        public Nullable<decimal> LogInFind { get; set; }
+        public Nullable<decimal> LogInClick { get; set; }
     
         public virtual UIType UIType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
