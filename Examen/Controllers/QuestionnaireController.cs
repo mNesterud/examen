@@ -41,17 +41,22 @@ namespace Examen.Controllers
         [HttpPost]
         public ActionResult EmailPage(Email e)
         {
-            if (ModelState.IsValid)
-            {
+            
                 using (DBEntities db = new DBEntities())
                 {
-                    Email e2 = new Email();
-                    e2.Id = e.Id;
-                    e2.Mail = e.Mail;
-                    db.Emails.Add(e2);
-                    db.SaveChanges();
+                   
+                    db.Emails.Add(e);
+                    try
+                    {
+
+                        db.SaveChanges();
+                    }
+                    catch (Exception error)
+                    {
+                        
+                    }
                 }
-            }
+            
             return View("ThankYou");
         }
         //public PartialViewResult QuestionSaveChoice(string id, int rID, int qrID)
