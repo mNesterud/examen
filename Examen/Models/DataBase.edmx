@@ -37,6 +37,7 @@
           <Property Name="TotalTime" Type="decimal" Precision="18" Scale="10" />
           <Property Name="LogInFind" Type="decimal" Precision="18" Scale="0" />
           <Property Name="LogInClick" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QStart" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Response">
           <Key>
@@ -310,6 +311,7 @@
           <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="Respondent" ToRole="RQT" />
           <Property Name="LogInFind" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="LogInClick" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QStart" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="RQR">
           <Key>
@@ -445,6 +447,7 @@
           <EntitySetMapping Name="Respondents">
             <EntityTypeMapping TypeName="informatikexamenModel.Respondent">
               <MappingFragment StoreEntitySet="Respondent">
+                <ScalarProperty Name="QStart" ColumnName="QStart" />
                 <ScalarProperty Name="LogInClick" ColumnName="LogInClick" />
                 <ScalarProperty Name="LogInFind" ColumnName="LogInFind" />
                 <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
