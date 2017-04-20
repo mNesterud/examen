@@ -33,24 +33,31 @@ namespace Examen.Controllers
         {
             return View();
         }
-        public void SaveTime(string rID, string time, string loginFind)
+        public void SaveTime(string rID, string time, string timeType)
         {
-            bool isLoginFind = Convert.ToBoolean(loginFind);
+           // bool isLoginFind = Convert.ToBoolean(loginFind);
             int id = Convert.ToInt16(rID);
             decimal theTime = decimal.Parse(time);
 
             using (DBEntities db = new DBEntities())
             {
                 Respondent r = db.Respondents.Where(x => x.Id == id).FirstOrDefault();
-            
-            if (isLoginFind)
-            {
-                
-            }
-            else if (!isLoginFind)
-            {
 
-            }
+                if (timeType.ToLower() == "loginfind")
+                {
+                    r.LogInFind = theTime;
+                    db.SaveChanges();
+                }
+                else if (timeType.ToLower() == "loginclick")
+                {
+                    r.LogInClick = theTime;
+                    db.SaveChanges();
+                }
+                else if (timeType.ToLower() == "qstart")
+                {
+                    r.LogInClick = theTime;/////FEL ÄNDRA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    db.SaveChanges();
+                }
 
             }
 

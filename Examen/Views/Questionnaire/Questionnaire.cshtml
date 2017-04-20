@@ -17,6 +17,17 @@
 
 
 <script type="text/javascript">
+    $(document).ready(startTime());
+
+    function addClickEvent() {
+        var loginBtn = document.getElementById("login_btn");
+
+        loginBtn.addEventListener("click", function () {
+            sendTime("qstart")
+        });
+
+    }
+    addClickEvent();
 
     function loadQuestion(input) {
         $.ajax({
