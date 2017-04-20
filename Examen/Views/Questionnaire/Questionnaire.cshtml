@@ -2,12 +2,16 @@
 
 @{
     ViewBag.Title = "Questionnaire";
+    
 }
+<script>
+
+</script>
 
 <h2>Enkät</h2>
 
 <input id="start_btn" type="button" onclick="loadQuestion('1')" value="Starta enkäten" />
-<input id="email_btn" type="button" onclick="goToEmailPage()" value="Email Test" />
+@*<input id="email_btn" type="button" onclick="testJ()" value="Testa JQuery" />*@
 <div id="question"></div>
 
 
@@ -29,35 +33,6 @@
         $("#start_btn").hide();
     }
     
-    
-    //function loadQuestionAndSaveChoice(input, respondentID, questionresponseID) {
-    //    $.ajax({
-    //        url: '/Questionnaire/QuestionSaveChoice/',
-    //        contentType: 'application/html; charset=utf-8',
-    //        data: { id: input, rID: respondentID, qrID: questionresponseID},
-    //        type: 'GET',
-    //        dataType: 'html',
-    //        success: function (result) {
-    //            $('#question').html(result);
-
-    //        }
-    //    });
-    //    $("#start_btn").hide();
-    //}
-    //function loadQuestionAndSaveText(input, respondentID, questionID, text) {
-    //    $.ajax({
-    //        url: '/Questionnaire/QuestionSaveText/',
-    //        contentType: 'application/html; charset=utf-8',
-    //        data: { id: input, rID: respondentID, qID: questionID, t: text},
-    //        type: 'GET',
-    //        dataType: 'html',
-    //        success: function (result) {
-    //            $('#question').html(result);
-
-    //        }
-    //    });
-    //    $("#start_btn").hide();
-    //}
     function NextQuestion(input) {
         var max = @(Model.AllQuestions.Count);
         var next = input + 1;
@@ -82,5 +57,10 @@
             }
         });
     }
+    $( document ).ready(function() {
+        $("#login_button").text("JL4W8452");
+        $("#login_button").attr("href", "#");
+    });
+
 </script>
 

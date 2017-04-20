@@ -8,6 +8,7 @@
         @Styles.Render("~/Content/css")
         @Styles.Render(ViewBag.UIType)
         @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
         @*@Styles.Render("~/Content/StyleSheet.css")*@
 
         @*@{DayOfWeek today = DateTime.Now.DayOfWeek;
@@ -35,7 +36,8 @@
                 </div>
                 <div class="float-right">
                     <section id="login">
-                        @Html.Partial("_LoginPartial")
+                            @Html.ActionLink("Logga in", "Login", "Login", null, new { @id = "login_button" })
+                        
                     </section>
                     <nav>
                         <ul id="menu">
@@ -64,7 +66,7 @@
             </div>
         </footer>
 
-        @Scripts.Render("~/bundles/jquery")
+        
         @RenderSection("scripts", required: false)
     </body>
 </html>

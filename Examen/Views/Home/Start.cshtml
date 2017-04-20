@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Start";
+    Layout = null;
+}
+@Styles.Render("~/Content/css")
+@Styles.Render(ViewBag.UIType)
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+<h2>Start</h2>
+<ol class="round">
+    <li class="one">
+        <h5>Logga in!</h5>
+        Logga in lite till.
+        <br />
+    </li>
+
+    <li class="two">
+        <h5>Genomför test!</h5>
+        Genomför testet yay!
+        <br />
+    </li>
+
+    <li class="three">
+        <h5>Vinn en trisslott!</h5>
+        Vinn flera
+        <br />
+    </li>
+</ol>
+@Html.ActionLink("Starta testet", "Index", "Home", null, null)
