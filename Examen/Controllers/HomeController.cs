@@ -35,7 +35,6 @@ namespace Examen.Controllers
         }
         public void SaveTime(string rID, string time, string timeType)
         {
-           // bool isLoginFind = Convert.ToBoolean(loginFind);
             int id = Convert.ToInt16(rID);
             decimal theTime = decimal.Parse(time);
 
@@ -55,7 +54,7 @@ namespace Examen.Controllers
                 }
                 else if (timeType.ToLower() == "qstart")
                 {
-                    r.LogInClick = theTime;/////FEL ÄNDRA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    r.QStart = theTime;
                     db.SaveChanges();
                 }
 

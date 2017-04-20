@@ -72,7 +72,7 @@
     </body>
 </html>
 <script>
-        function sendTime(isLoginFind) {
+        function sendTime(time_type) {
             var timeMs = responseTime();
             @using Examen.Models{
                 var respondentID = @(((Respondent)Session["Respondent"]).Id);
@@ -81,7 +81,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/Home/SaveTime/',
-                data: { rID: respondentID, time: timeMs, loginFind: isLoginFind },
+                data: { rID: respondentID, time: timeMs, timeType: time_type },
                 success: function (result) {
 
                 }

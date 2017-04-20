@@ -10,7 +10,7 @@
 
 <h2>Enkät</h2>
 
-<input id="start_btn" type="button" onclick="loadQuestion('1')" value="Starta enkäten" />
+<input id="start_btn" type="button" value="Starta enkäten" />
 @*<input id="email_btn" type="button" onclick="testJ()" value="Testa JQuery" />*@
 <div id="question"></div>
 
@@ -20,10 +20,11 @@
     $(document).ready(startTime());
 
     function addClickEvent() {
-        var loginBtn = document.getElementById("login_btn");
+        var loginBtn = document.getElementById("start_btn");
 
         loginBtn.addEventListener("click", function () {
-            sendTime("qstart")
+            sendTime("qstart");
+            loadQuestion('1');
         });
 
     }
