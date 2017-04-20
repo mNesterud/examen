@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Examen.Models;
 
 namespace Examen.Controllers
 {
@@ -31,6 +32,28 @@ namespace Examen.Controllers
         public ActionResult Start()
         {
             return View();
+        }
+        public void SaveTime(string rID, string time, string loginFind)
+        {
+            bool isLoginFind = Convert.ToBoolean(loginFind);
+            int id = Convert.ToInt16(rID);
+            decimal theTime = decimal.Parse(time);
+
+            using (DBEntities db = new DBEntities())
+            {
+                Respondent r = db.Respondents.Where(x => x.Id == id).FirstOrDefault();
+            
+            if (isLoginFind)
+            {
+                
+            }
+            else if (!isLoginFind)
+            {
+
+            }
+
+            }
+
         }
     }
 }

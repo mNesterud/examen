@@ -36,7 +36,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 @*<input type="submit" value="Logga in" class="btn btn-default" />*@
-                @Html.ActionLink("Logga in", "Questionnaire", "Questionnaire", null, null)
+                @Html.ActionLink("Logga in", "Questionnaire", "Questionnaire", null, new { @id = "login_btn" })
             </div>
         </div>
     </div>
@@ -45,3 +45,17 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    $(document).ready(startTime());
+
+    function addClickEvent() {
+        var loginBtn = document.getElementById("login_btn");
+
+        loginBtn.addEventListener("click", function () {
+            sendTime("FALSE")
+        });
+
+    }
+    addClickEvent();
+</script>
