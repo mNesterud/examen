@@ -34,7 +34,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UITypeID" Type="int" Nullable="false" />
-          <Property Name="TotalTime" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="TotalTime" Type="decimal" Precision="18" Scale="0" />
           <Property Name="LogInFind" Type="decimal" Precision="18" Scale="0" />
           <Property Name="LogInClick" Type="decimal" Precision="18" Scale="0" />
           <Property Name="QStart" Type="decimal" Precision="18" Scale="0" />
@@ -53,7 +53,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RespondentID" Type="int" Nullable="false" />
           <Property Name="QuestionResponseID" Type="int" Nullable="false" />
-          <Property Name="Time" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="Time" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="RQT">
           <Key>
@@ -63,7 +63,7 @@
           <Property Name="RespondentID" Type="int" Nullable="false" />
           <Property Name="QuestionID" Type="int" Nullable="false" />
           <Property Name="Text" Type="nvarchar(max)" />
-          <Property Name="Time" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="Time" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="UIType">
           <Key>
@@ -305,7 +305,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UITypeID" Type="Int32" Nullable="false" />
-          <Property Name="TotalTime" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="TotalTime" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="UIType" Relationship="informatikexamenModel.FK_Respondent_ToUIType" FromRole="Respondent" ToRole="UIType" />
           <NavigationProperty Name="RQRs" Relationship="informatikexamenModel.FK_RespondentId" FromRole="Respondent" ToRole="RQR" />
           <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="Respondent" ToRole="RQT" />
@@ -320,7 +320,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RespondentID" Type="Int32" Nullable="false" />
           <Property Name="QuestionResponseID" Type="Int32" Nullable="false" />
-          <Property Name="Time" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="Time" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="QuestionResponse" Relationship="informatikexamenModel.FK_QRID" FromRole="RQR" ToRole="QuestionResponse" />
           <NavigationProperty Name="Respondent" Relationship="informatikexamenModel.FK_RespondentId" FromRole="RQR" ToRole="Respondent" />
         </EntityType>
@@ -332,7 +332,7 @@
           <Property Name="RespondentID" Type="Int32" Nullable="false" />
           <Property Name="QuestionID" Type="Int32" Nullable="false" />
           <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Time" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="Time" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Question" Relationship="informatikexamenModel.FK_QuestionId_" FromRole="RQT" ToRole="Question" />
           <NavigationProperty Name="Respondent" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="RQT" ToRole="Respondent" />
         </EntityType>
