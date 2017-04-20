@@ -9,3 +9,13 @@ function responseTime() {
     var time = current - start;
     return time;
 }
+
+function killSession() {
+    $.ajax({
+        type: 'POST',
+        url: '/Questionnaire/KillSession/',
+        success: function (result) {
+
+        }
+    });
+}

@@ -59,19 +59,10 @@ namespace Examen.Controllers
             
             return View("ThankYou");
         }
-        //public PartialViewResult QuestionSaveChoice(string id, int rID, int qrID)
-        //{
-        //    QuestionAndResponses qr = new QuestionAndResponses(Convert.ToInt16(id));
-
-        //    return PartialView("Question", qr);
-        //}
-
-        //public PartialViewResult QuestionSaveText(string id, int rID, int qID, string t)
-        //{
-        //    QuestionAndResponses qr = new QuestionAndResponses(Convert.ToInt16(id));
-
-        //    return PartialView("Question", qr);
-        //}
+        public void KillSession()
+        {
+            System.Web.HttpContext.Current.Session.Remove("Respondent");
+        }
 
         public void SaveChoice(string rID, string qID, string time)
         {
