@@ -35,6 +35,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UITypeID" Type="int" Nullable="false" />
           <Property Name="TotalTime" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="LogInFind" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="LogInClick" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Response">
           <Key>
@@ -306,6 +308,8 @@
           <NavigationProperty Name="UIType" Relationship="informatikexamenModel.FK_Respondent_ToUIType" FromRole="Respondent" ToRole="UIType" />
           <NavigationProperty Name="RQRs" Relationship="informatikexamenModel.FK_RespondentId" FromRole="Respondent" ToRole="RQR" />
           <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="Respondent" ToRole="RQT" />
+          <Property Name="LogInFind" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LogInClick" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="RQR">
           <Key>
@@ -441,6 +445,8 @@
           <EntitySetMapping Name="Respondents">
             <EntityTypeMapping TypeName="informatikexamenModel.Respondent">
               <MappingFragment StoreEntitySet="Respondent">
+                <ScalarProperty Name="LogInClick" ColumnName="LogInClick" />
+                <ScalarProperty Name="LogInFind" ColumnName="LogInFind" />
                 <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
                 <ScalarProperty Name="UITypeID" ColumnName="UITypeID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
