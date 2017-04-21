@@ -6,11 +6,11 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
-        @Styles.Render(ViewBag.UIType)
         @Scripts.Render("~/bundles/modernizr")
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/javascript")
-        @Styles.Render("~/Content/StyleSheet.css")
+        @*@Styles.Render("~/Content/StyleSheet.css")*@
+        @Styles.Render(ViewBag.UIType)
 
         @*@{DayOfWeek today = DateTime.Now.DayOfWeek;
                 if(today == DayOfWeek.Tuesday)
@@ -38,7 +38,7 @@
                 <div class="float-right">
                     <section id="login">
                             @Html.ActionLink("Logga in", "Login", "Login", null, new { @id = "login_link"})
-                        
+                            
                     </section>
                     <nav>
                         <ul id="menu">
