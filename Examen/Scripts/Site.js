@@ -19,3 +19,8 @@ function killSession() {
         }
     });
 }
+function preventUnload() {
+    window.addEventListener("onbeforeunload", function () {
+        return "uppdatering är låst";
+    });
+}

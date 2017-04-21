@@ -28,3 +28,12 @@
     </li>
 </ol>
 @Html.ActionLink("Starta testet", "Index", "Home", null, null)
+
+<input type="button" onclick="test()" value="Starta Test" />
+
+<script>
+
+    function test() {
+        window.open("Home/Index", 'window', 'toolbar=no, menubar=no, resizable=yes');
+    }
+</script>
