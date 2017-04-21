@@ -7,6 +7,14 @@ h2{
 .login_button_corner{
 
 }
-.next_button{
 
+/*input[type=radio]:checked + label + div .qr_div + div #question + #next_button{
+    background-color:green;
+    opacity:1;
+    color:white;
+}*/
+.salient_button{
+    background-color:#458B00;
+    opacity:1;
+    color:white;
 }

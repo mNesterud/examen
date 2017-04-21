@@ -17,20 +17,48 @@
     {
         foreach (var r in Model.Responses)
         {
-            <div>
-                @Html.RadioButtonFor(m => m.SelectedResponseId, r.Id)@Html.Label(r.ResponseText)
+            <div class="qr_div">
+                @Html.RadioButtonFor(m => m.SelectedResponseId, r.Id)@Html.Label(r.ResponseText, new { @class = "qr_label" })
 
             </div>
         }
-        <input type="button" onclick="SaveChoice()" value="Nästa" class="next_button">
+        <input type="button" onclick="SaveChoice()" value="Nästa" class="next_button" id="next_button">
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('[name="SelectedResponseId"]').click(function(){
+                    var nextBtn = document.getElementById("next_button");
+                    nextBtn.className += " salient_button";
+                });
+            });
+        </script>
     }
     else
     {
         <div>
-            <input type="text" id="textResponse" />
+            <input type="text" id="textResponse" onchange="textChange(this.Text)"/>
             <label class="help_text"></label>
         </div>
-        <input type="button" onclick="SaveText()" value="Nästa">
+    <input type="button" onclick="SaveText()" value="Nästa" class="next_button" id="next_button">
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var nextBtn = document.getElementById("next_button");
+                var textfield = document.getElementById("textResponse");
+                textfield.addEventListener("input", function(){
+                    var text = $('#textResponse').val();
+                    if(text != null && text != ""){
+                        if ( !nextBtn.className.match(/(?:^|\s)salient_button(?!\S)/) )
+                        {
+                            nextBtn.className += " salient_button";
+                        }
+                    }
+                    else{
+                        nextBtn.className = nextBtn.className.replace (/(?:^|\s)salient_button(?!\S)/g , '')
+                    }
+                })
+            });
+        </script>
     }
 
 
