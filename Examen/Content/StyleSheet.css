@@ -24,3 +24,22 @@ h5{
 .next_button{
 
 }
+
+
+
+.qr_div{
+    width:100%;
+    /*min-width:280px;*/
+    margin:0 auto;
+    overflow:auto;
+    padding:20px 0px 0px 0px;
+}
+.qr_label{
+    /*min-width:250px;*/
+}
+input[type=radio]{
+    color:purple;
+    width:auto;
+    float:left;
+    margin-right:20px;
+}

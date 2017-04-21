@@ -17,8 +17,8 @@
     {
         foreach (var r in Model.Responses)
         {
-            <div>
-                @Html.RadioButtonFor(m => m.SelectedResponseId, r.Id)@Html.Label(r.ResponseText)
+            <div class="qr_div">
+                @Html.RadioButtonFor(m => m.SelectedResponseId, r.Id)@Html.Label(r.ResponseText, new { @class = "qr_label" })
 
             </div>
         }
