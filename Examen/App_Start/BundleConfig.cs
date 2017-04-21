@@ -26,7 +26,7 @@ namespace Examen
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/javascript").Include(
-                        "~/Scripts/site.js"));
+                        "~/Scripts/Site.js"));
 
 
 

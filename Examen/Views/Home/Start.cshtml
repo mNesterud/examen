@@ -7,33 +7,45 @@
 @Styles.Render(ViewBag.UIType)
 @Scripts.Render("~/bundles/modernizr")
 @Scripts.Render("~/bundles/jquery")
-<h2>Start</h2>
-<ol class="round">
-    <li class="one">
-        <h5>Logga in!</h5>
-        Logga in lite till.
-        <br />
-    </li>
+@Scripts.Render("~/bundles/javascript")
 
-    <li class="two">
-        <h5>Genomför test!</h5>
-        Genomför testet yay!
-        <br />
-    </li>
+<div id="startDiv">
+    <h2>Start</h2>
 
-    <li class="three">
-        <h5>Vinn en trisslott!</h5>
-        Vinn flera
-        <br />
-    </li>
-</ol>
-@Html.ActionLink("Starta testet", "Index", "Home", null, null)
+    <ol class="round">
+        <li class="one">
+            <h5>Logga in!</h5>
+            Logga in lite till.
+            <br />
+        </li>
 
-<input type="button" onclick="test()" value="Starta Test" />
+        <li class="two">
+            <h5>Genomför test!</h5>
+            Genomför testet yay!
+            <br />
+        </li>
+
+        <li class="three">
+            <h5>Vinn en trisslott!</h5>
+            Vinn flera
+            <br />
+        </li>
+    </ol>
+    @Html.ActionLink("Starta testet", "Index", "Home", null, null)
+    <input type="button" onclick="newWindow('Home/Index')" value="Starta Test" />
+</div>
+<div id="thankU" hidden="hidden">
+    <h2>TACK!</h2>
+    <h5>För att du hjälper oss med vår kandidatexamen i informatik.</h5>
+</div>
+
 
 <script>
 
-    function test() {
-        window.open("Home/Index", 'window', 'toolbar=no, menubar=no, resizable=yes');
+    function newWindow(url) {
+        window.open(url, 'window', 'toolbar=no, menubar=no, resizable=yes');
+        $("#startDiv").hide();
+        $("#thankU").show();
+
     }
 </script>

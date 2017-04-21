@@ -12,12 +12,18 @@
 
 <input id="start_btn" type="button" value="Starta enkäten" />
 @*<input id="email_btn" type="button" onclick="testJ()" value="Testa JQuery" />*@
-<div id="question"></div>
+<div id="question">
+    @*@if ( != null)
+    {
+        @Html.Partial("Question", Model.LastSaveTime.ToString())
+    }*@
+</div>
 
 
 
 <script type="text/javascript">
     $(document).ready(startTime());
+
 
     function addClickEvent() {
         var loginBtn = document.getElementById("start_btn");
@@ -44,12 +50,12 @@
         });
         $("#start_btn").hide();
     }
-    
+
     function NextQuestion(input) {
         var max = @(Model.AllQuestions.Count);
         var next = input + 1;
-        
-        
+
+
         if(next <=  max){
             loadQuestion(next);
         }
@@ -70,9 +76,27 @@
         });
     }
     $( document ).ready(function() {
-        $("#login_button").text("JL4W8452");
-        $("#login_button").attr("href", "#");
+        $("#login_link").text("JL4W8452");
+        $("#login_link").attr("href", "#");
     });
+    @if (System.Web.HttpContext.Current.Session["LastLoadedQ"] != null)
+    {
+        if (System.Web.HttpContext.Current.Session["LastLoadedQ"] == "Email")
+        {
+            <text>
+            $(document).ready(goToEmailPage());
+            </text>
+
+        }
+        else
+        {
+            <text>
+            $(document).ready(loadQuestion(@System.Web.HttpContext.Current.Session["LastLoadedQ"]));
+            </text>
+        }
+    
+
+    }
 
 </script>
 
