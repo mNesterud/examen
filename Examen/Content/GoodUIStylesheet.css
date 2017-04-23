@@ -8,6 +8,41 @@ h2{
 
 }
 
+
+#login{
+    float:right;
+    overflow:auto;
+    /*width:100%;*/
+}
+#login a{
+    font-size:17px; /*ÄNDRA!*/
+    float:left;
+    background-color:transparent;
+    font-weight: 600;
+    color: #999;
+}
+.login_icon{
+    /*display:block;    KANSKE inline-block*/
+    width:32px;
+    float:left;
+}
+/*.float-right{
+    clear:right;
+}*/
+
+
+#login_btn{
+    padding: 10px;
+    display: block;
+    width: 80px;
+    background-color: cornflowerblue;
+    font-size: 1.2em;
+    color: white;
+    text-align: center;
+}
+
+
+
 /*input[type=radio]:checked + label + div .qr_div + div #question + #next_button{
     background-color:green;
     opacity:1;

@@ -1,13 +1,46 @@
 ﻿body {
 }
 
+/*#login{
+    float:right;
+    overflow:auto;
+    /*width:100%;
+}
+#login a{
+    font-size:17px; /*ÄNDRA!*/
+    /*float:left;
+    background-color:transparent;
+    font-weight: 600;
+    color: #999;
+}
+.login_icon{
+    /*display:block;    KANSKE inline-block*/
+    /*width:32px;
+    float:left;
+}*/
+.float-right{
+    clear:right;
+}
+
+
+
+
+
+#login_btn{
+    text-decoration:none;
+    display:block;
+}
+
+
+
 #menu li:hover{
     cursor:pointer;
 }
 
 #miun-logga{
-    width:50%;
-    max-width:200px;
+    /*width:50%;*/
+    width:150px;
+    /*max-width:200px;*/
     float:left;
 }
 .site-title{
@@ -49,4 +82,76 @@ input[type=radio]{
     margin-right:20px;
     transform:scale(1.5);
     background:transparent;
+}
+
+
+
+
+.bullet_page_section{
+    margin:0 auto;
+    width:50%;
+}
+#h1_start_page{
+    padding-top:20px;
+}
+.h5_bullet{
+    font-size:1.5em;
+    /*color:darkgray;*//*TA BORT SEN, ANVÄNDS NU BARA FÖR ATT SER UI-TYPE*/
+}
+.p_bullet_text{
+    color:black;
+    margin:0;
+    font-size:1.1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 800px){
+    .bullet_page_section{
+        width: 75%;
+    }
+}
+
+
+@media screen and (max-width: 450px){
+    .float-left{
+        /*max-width:100px;*/
+    }
+}
+
+
+@media screen and (max-width: 380px){
+    .bullet_page_section{
+        width:90%;
+    }
+    .float-right{
+        /*float:left;*/
+    }
+    .float-left,
+    .float-right{
+        margin:0 auto;
+    }
+}
+
+
+@media screen and (max-width: 358px){
+    .float-right{
+        float:left;
+        margin-top:10px;
+    }
+}
+
+@media screen and (max-width: 275px){
+    #miun-logga{
+        width:100px;
+    }
 }

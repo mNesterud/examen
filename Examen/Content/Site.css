@@ -116,6 +116,7 @@ h5, h6 {
 
 header .content-wrapper {
     padding-top: 20px; 
+    overflow:auto;                              /*NYTT*/
 }
 
 footer {
@@ -596,7 +597,7 @@ tr.pager td {
     ----------------------------------------------------------*/
     header .float-left,
     header .float-right {
-        float: none;
+        /*float: none;*/
     }
 
     /* logo */
@@ -682,7 +683,7 @@ tr.pager td {
     }
 
         ol.round li {
-            padding-left: 10px;
+            /*padding-left: 10px;*/
             margin: 25px 0;
         }
 
@@ -696,7 +697,7 @@ tr.pager td {
             ol.round li.seven,
             ol.round li.eight,
             ol.round li.nine {
-                background: none;
+                /*background: none;*/
             }
 
      /* features */
