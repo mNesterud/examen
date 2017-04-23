@@ -1,5 +1,5 @@
 ﻿@model Examen.Models.QuestionAndResponses
-<p>@Model.Q.QuestionText</p>
+<p class="question-text">@Model.Q.QuestionText</p>
 
 
 
@@ -35,9 +35,10 @@
     }
     else
     {
+        <p class="help-text">(@Model.Q.HelpText)</p>
         <div>
             <input type="text" id="textResponse" onchange="textChange(this.Text)"/>
-            <label class="help_text"></label>
+            @*<label class="help_text"></label>*@
         </div>
     <input type="button" onclick="SaveText()" value="Nästa" class="next_button" id="next_button">
 

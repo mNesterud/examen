@@ -1,6 +1,10 @@
 ﻿body {
 }
 
+.featured{
+    padding-top:20px;
+}
+
 /*#login{
     float:right;
     overflow:auto;
@@ -150,7 +154,7 @@ input[type=radio]{
     }
 }
 
-@media screen and (max-width: 275px){
+@media screen and (max-width: 290px){
     #miun-logga{
         width:100px;
     }

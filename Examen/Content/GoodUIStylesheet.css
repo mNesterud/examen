@@ -53,3 +53,14 @@ h2{
     opacity:1;
     color:white;
 }
+
+
+#question p{
+    font-size:1.5em;
+}
+.question-text{
+    display:inline;
+}
+.help-text{
+    display:inline;
+}

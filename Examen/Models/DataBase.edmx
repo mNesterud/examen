@@ -19,6 +19,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="QuestionText" Type="nvarchar(max)" />
           <Property Name="MultipleChoise" Type="bit" Nullable="false" />
+          <Property Name="HelpText" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="QuestionResponse">
           <Key>
@@ -246,6 +247,7 @@
           <Property Name="MultipleChoise" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="QuestionResponses" Relationship="informatikexamenModel.FK_QuestionId" FromRole="Question" ToRole="QuestionResponse" />
           <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_QuestionId_" FromRole="Question" ToRole="RQT" />
+          <Property Name="HelpText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Response">
           <Key>
@@ -412,6 +414,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="informatikexamenModel.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="HelpText" ColumnName="HelpText" />
                 <ScalarProperty Name="MultipleChoise" ColumnName="MultipleChoise" />
                 <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

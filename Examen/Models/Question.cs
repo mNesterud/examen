@@ -24,6 +24,7 @@ namespace Examen.Models
         public int Id { get; set; }
         public string QuestionText { get; set; }
         public bool MultipleChoise { get; set; }
+        public string HelpText { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionResponse> QuestionResponses { get; set; }
