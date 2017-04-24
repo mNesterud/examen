@@ -1,141 +1,87 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/javascript")
-        @*@Styles.Render("~/Content/StyleSheet.css")*@
-        @Styles.Render(ViewBag.UIType)
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/javascript")
+    @Styles.Render(ViewBag.UIType)
 
-        @*@{DayOfWeek today = DateTime.Now.DayOfWeek;
-                if(today == DayOfWeek.Tuesday)
-                { 
-                    @Styles.Render("~/Content/GoodUIStylesheet.css");
-                }
-                else
-                {
-                    @Styles.Render("~/Content/BadUIStylesheet.css"); 
-                }
-            }*@
-        @*@{using (Examen.Controllers.BaseController bc = new Examen.Controllers.BaseController())
-        {          
-            Styles.Render(ViewBag.UIType);
-        }}*@
-
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <img src="~/Images/mittuniversitetet_logo.png" id="miun-logga"/>
-                    @*<p class="site-title">Examensarbete</p>*@
-                </div>
-                <section id="login">
-                        @*@Html.ActionLink("Logga in", "Login", "Login", null, new { @id = "login_link"})*@
-                    <a href="@Url.Action("Login", "Login")" id="login_link">Logga in
-                        <img src="@Url.Content("~/images/login-icon.png")" class="login_icon" />
-                    </a>
-                </section>
-
-
-                <div class="float-right">
-                    <nav>
-                        <ul id="menu">
-                            @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                            <li><a>Hem</a></li>
-                            <li><a>Om oss</a></li>
-                            <li><a>Kontakt</a></li>
-                        </ul>
-                    </nav>
-                </div>
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <img src="~/Images/mittuniversitetet_logo.png" id="miun-logga" />
             </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
+            <section id="login">
+                <a href="@Url.Action("Login", "Login")" id="login_link">
+                    Logga in
+                    <img src="@Url.Content("~/images/login-icon.png")" class="login_icon" />
+                </a>
             </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    @*<p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>*@
-                </div>
-            </div>
-        </footer>
 
-        
-        @RenderSection("scripts", required: false)
-    </body>
+
+            <div class="float-right">
+                <nav>
+                    <ul id="menu">
+                        <li><a>Hem</a></li>
+                        <li><a>Om oss</a></li>
+                        <li><a>Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+            </div>
+        </div>
+    </footer>
+
+
+    @RenderSection("scripts", required: false)
+</body>
 </html>
 <script>
+    function sendTime(time_type) {
+        var timeMs = responseTime();
+        @using Examen.Models{
+            var respondentID = @(((Respondent)Session["Respondent"]).Id);
+        }
 
-    function getBrowserType(){
-        var agent = navigator.userAgent;
-        var userBrowser = "";
+        var bt = getBrowserType();
 
-        if(agent.indexOf("Edge")> -1){
-            userBrowser = "Edge";
-        }
-        else if(agent.indexOf("Chrome") > -1){
-            userBrowser = "Chrome";
-        }
-        else if (agent.indexOf("Safari") > -1) {
-            userBrowser = "Safari";
-        }
-        else if (agent.indexOf("Opera") > -1) {
-            userBrowser = "Opera";
-        }
-        else if (agent.indexOf("Firefox") > -1) {
-            userBrowser = "Firefox";
-        }
-        else if (agent.indexOf("MSIE") > -1) {
-            userBrowser = "Internet Explorer";
-        }
-        else if (agent.indexOf("Trident") > -1) {
-            userBrowser = "Internet Explorer";
-        }
-            
-        userBrowser += " - " + agent
-        return userBrowser;
+        $.ajax({
+            type: 'POST',
+            url: '/Home/SaveTime/',
+            data: { rID: respondentID, time: timeMs, timeType: time_type, browserType: bt},
+            success: function (result) {
 
-
+            }
+        });
     }
 
-        function sendTime(time_type) {
-            var timeMs = responseTime();
-            @using Examen.Models{
-                var respondentID = @(((Respondent)Session["Respondent"]).Id);
-            }
+    function addClickEvent() {
+        var loginLink = document.getElementById("login_link");
 
-            var bt = getBrowserType();
-            
-            $.ajax({
-                type: 'POST',
-                url: '/Home/SaveTime/',
-                data: { rID: respondentID, time: timeMs, timeType: time_type, browserType: bt},
-                success: function (result) {
+        loginLink.addEventListener("click", function(){
+            sendTime("loginfind")});
 
-                }
-            });
-        }
+    }
+    addClickEvent();
 
-        function addClickEvent() {
-            var loginLink = document.getElementById("login_link");
-
-            loginLink.addEventListener("click", function(){
-                sendTime("loginfind")});
-            
-        }
-        addClickEvent();
-        
 
 
 </script>
