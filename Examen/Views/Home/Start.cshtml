@@ -7,39 +7,54 @@
 @Styles.Render(ViewBag.UIType)
 @Scripts.Render("~/bundles/modernizr")
 @Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/javascript")
 <section class="bullet_page_section">
     <h1 id="h1_start_page">Start</h1>
     <h3 id="h3_start_page">Var god läs informationen nedan.</h3>
-    <ol class="round">
-        <li class="one">
+
+<div id="startDiv">
+    <h2>Start</h2>
+
+<ol class="round">
+    <li class="one">
             <h5 class="h5_bullet">Logga in</h5>
             <p class="p_bullet_text">Efter att du klickat på "Starta enkät" nedan kommer du till en ny sida. 
             Där börjar du med att klicka på "Logga in" för att komma till inloggningssidan. 
             Du har fått ett genererat användarnamn och lösenord som är automatiskt ifyllt så det är bara att klicka på "Logga in".</p>
-            <br />
-        </li>
+        <br />
+    </li>
 
-        <li class="two">
+    <li class="two">
             <h5 class="h5_bullet">Genomför enkät</h5>
             <p class="p_bullet_text">Svara på frågorna i enkäten. Vi lagrar <u><b>ingen</b></u> information om dig, 
             men svaren du ger är viktiga för studien.</p>
-            <br />
-        </li>
+        <br />
+    </li>
 
-        <li class="three">
+    <li class="three">
             <h5 class="h5_bullet">Vinn en trisslott!</h5>
             <p class="p_bullet_text">Efter enkäten är genomförd får du <i>frivilligt</i> fylla i din e-post ifall
              du vill vara med i utlottningen av en trisslott.</p>
-            <br />
-        </li>
-    </ol>
-    @Html.ActionLink("Starta enkät", "Index", "Home", null, null)
+        <br />
+    </li>
+</ol>
+    @Html.ActionLink("Starta testet", "Index", "Home", null, null)
+    <input type="button" onclick="newWindow('Home/Index')" value="Starta Test" />
+</div>
+<div id="thankU" hidden="hidden">
+    <h2>TACK!</h2>
+    <h5>För att du hjälper oss med vår kandidatexamen i informatik.</h5>
+</div>
+
 
     <input type="button" onclick="test()" value="Starta enkät" />
 </section>
 <script>
 
-    function test() {
-        window.open("Home/Index", 'window', 'toolbar=no, menubar=no, resizable=yes');
+    function newWindow(url) {
+        window.open(url, 'window', 'toolbar=no, menubar=no, resizable=yes');
+        $("#startDiv").hide();
+        $("#thankU").show();
+
     }
 </script>

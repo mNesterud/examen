@@ -15,7 +15,7 @@ function killSession() {
         type: 'POST',
         url: '/Questionnaire/KillSession/',
         success: function (result) {
-
+            
         }
     });
 }

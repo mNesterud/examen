@@ -16,9 +16,14 @@ namespace Examen.Controllers
             QuestionnaireModel q = new QuestionnaireModel(true);
             return View(q);
         }
+        public ActionResult ThankYou()
+        {
+            return View();
+        }
         public PartialViewResult Question(string id)
         {
             QuestionAndResponses qr = new QuestionAndResponses(Convert.ToInt16(id));
+            System.Web.HttpContext.Current.Session["LastLoadedQ"] = id;
 
             return PartialView("Question", qr);
         }
@@ -35,6 +40,7 @@ namespace Examen.Controllers
                 ui.Count++;
                 db.SaveChanges();
             }
+            System.Web.HttpContext.Current.Session["LastLoadedQ"] = "Email";
             return PartialView("_EmailPage");
         }
 
@@ -62,6 +68,7 @@ namespace Examen.Controllers
         public void KillSession()
         {
             System.Web.HttpContext.Current.Session.Remove("Respondent");
+            System.Web.HttpContext.Current.Session.Remove("LastLoadedQ");
         }
 
         public void SaveChoice(string rID, string qID, string time)
