@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Start";
     Layout = null;
 }
@@ -16,38 +15,42 @@
     <div id="startDiv">
         <h2>Start</h2>
 
-            <ol class="round">
-                <li class="one">
-                        <h5 class="h5_bullet">Logga in</h5>
-                        <p class="p_bullet_text">Efter att du klickat på "Starta enkät" nedan kommer du till en ny sida. 
-                        Där börjar du med att klicka på "Logga in" för att komma till inloggningssidan. 
-                        Du har fått ett genererat användarnamn och lösenord som är automatiskt ifyllt så det är bara att klicka på "Logga in".</p>
-                    <br />
-                </li>
+        <ol class="round">
+            <li class="one">
+                <h5 class="h5_bullet">Logga in</h5>
+                <p class="p_bullet_text">
+                    Efter att du klickat på "Starta enkät" nedan kommer du till en ny sida.
+                    Där börjar du med att klicka på "Logga in" för att komma till inloggningssidan.
+                    Du har fått ett genererat användarnamn och lösenord som är automatiskt ifyllt så det är bara att klicka på "Logga in".
+                </p>
+                <br />
+            </li>
 
-                <li class="two">
-                        <h5 class="h5_bullet">Genomför enkät</h5>
-                        <p class="p_bullet_text">Svara på frågorna i enkäten. Vi lagrar <u><b>ingen</b></u> information om dig, 
-                        men svaren du ger är viktiga för studien.</p>
-                    <br />
-                </li>
+            <li class="two">
+                <h5 class="h5_bullet">Genomför enkät</h5>
+                <p class="p_bullet_text">
+                    Svara på frågorna i enkäten. Vi lagrar <u><b>ingen</b></u> information om dig,
+                    men svaren du ger är viktiga för studien.
+                </p>
+                <br />
+            </li>
 
-                <li class="three">
-                        <h5 class="h5_bullet">Vinn en trisslott!</h5>
-                        <p class="p_bullet_text">Efter enkäten är genomförd får du <i>frivilligt</i> fylla i din e-post ifall
-                         du vill vara med i utlottningen av en trisslott.</p>
-                    <br />
-                </li>
-            </ol>
-                @Html.ActionLink("Starta testet", "Index", "Home", null, null)
-                <input type="button" onclick="newWindow('Home/Index')" value="Starta Test" />
+            <li class="three">
+                <h5 class="h5_bullet">Vinn en trisslott!</h5>
+                <p class="p_bullet_text">
+                    Efter enkäten är genomförd får du <i>frivilligt</i> fylla i din e-post ifall
+                    du vill vara med i utlottningen av en trisslott.
+                </p>
+                <br />
+            </li>
+        </ol>
+        @*@Html.ActionLink("Starta enkät", "Index", "Home", null, null)*@
+        <input type="button" onclick="newWindow('Home/Index')" value="Starta enkät" />
     </div>
     <div id="thankU" hidden="hidden">
         <h2>TACK!</h2>
         <h5>För att du hjälper oss med vår kandidatexamen i informatik.</h5>
     </div>
-
-    <input type="button" onclick="test()" value="Starta enkät" />
 </section>
 
 <script>
