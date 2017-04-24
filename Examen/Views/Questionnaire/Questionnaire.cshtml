@@ -8,8 +8,10 @@
 
 </script>
 
-<section id="questionnaire_section">
+@*<section id="non_cluttered_bg">*@
+<section class="non_cluttered_bg">
     <h2>Enkät</h2>
+    <br />
 
     <input id="start_btn" type="button" value="Starta enkäten" />
 
@@ -27,8 +29,8 @@
         loginBtn.addEventListener("click", function () {
             sendTime("qstart");
             loadQuestion('1');
-            $("#questionnaire_section").css("background", "none");
-            $("#questionnaire_section").css("background-color", "#efeeef");
+            //$("#non_cluttered_bg").css("background", "none");
+            //$("#non_cluttered_bg").css("background-color", "#efeeef");
         });
 
     }

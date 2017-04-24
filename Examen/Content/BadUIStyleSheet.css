@@ -4,10 +4,13 @@
 h2{
     color: red;
 }
+#body{
+    background: #efeeef url(../Images/clutter-bg.png) repeat;
+    min-height:500px;
+}
 
-
-#questionnaire_section{
-    background: #efeeef url(../Images/clutter-bg.png) no-repeat center;
+#non_cluttered_bg{
+    /*background: #efeeef url(../Images/clutter-bg.png) no-repeat center;*/
 }
 
 
