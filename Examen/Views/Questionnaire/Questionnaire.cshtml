@@ -8,12 +8,13 @@
 
 </script>
 
-<h2>Enkät</h2>
+<section id="questionnaire_section">
+    <h2>Enkät</h2>
 
-<input id="start_btn" type="button" value="Starta enkäten" />
-@*<input id="email_btn" type="button" onclick="testJ()" value="Testa JQuery" />*@
-<div id="question"></div>
-
+    <input id="start_btn" type="button" value="Starta enkäten" />
+    @*<input id="email_btn" type="button" onclick="testJ()" value="Testa JQuery" />*@
+    <div id="question"></div>
+</section>
 
 
 <script type="text/javascript">
@@ -25,6 +26,8 @@
         loginBtn.addEventListener("click", function () {
             sendTime("qstart");
             loadQuestion('1');
+            $("#questionnaire_section").css("background", "none");
+            $("#questionnaire_section").css("background-color", "#efeeef");
         });
 
     }

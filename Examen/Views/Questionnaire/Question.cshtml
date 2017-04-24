@@ -35,7 +35,10 @@
     }
     else
     {
-        <p class="help-text">(@Model.Q.HelpText)</p>
+        if (ViewBag.UIType == "~/Content/GoodUIStylesheet.css")
+        {
+            <p class="help-text">(@Model.Q.HelpText)</p>
+        }
         <div>
             <input type="text" id="textResponse" onchange="textChange(this.Text)"/>
             @*<label class="help_text"></label>*@

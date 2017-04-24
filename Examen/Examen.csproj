@@ -300,6 +300,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataBase.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\clutter-bg.png" />
     <Content Include="Images\login-icon.png" />
     <Content Include="Images\mittuniversitetet_logo.png" />
     <Content Include="Models\DataBase.Context.tt">

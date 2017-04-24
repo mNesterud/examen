@@ -6,6 +6,10 @@ h2{
 }
 
 
+#questionnaire_section{
+    background: #efeeef url(../Images/clutter-bg.png) no-repeat center;
+}
+
 
 #login{
     float:left;
@@ -13,15 +17,18 @@ h2{
     /*width:100%;*/
 }
 #login a{
-    font-size:17px; /*ÄNDRA!*/
+    font-size:13px; /*ÄNDRA!*/
     float:left;
     background-color:transparent;
     font-weight: 600;
     color: #999;
 }
+#login_btn:hover{
+    background-color:transparent;
+}
 .login_icon{
     /*display:block;    KANSKE inline-block*/
-    width:32px;
+    width:18px;
     float:left;
 }
 

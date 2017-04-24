@@ -27,6 +27,7 @@ namespace Examen.Models
         public Nullable<decimal> LogInFind { get; set; }
         public Nullable<decimal> LogInClick { get; set; }
         public Nullable<decimal> QStart { get; set; }
+        public string BrowserType { get; set; }
     
         public virtual UIType UIType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -15,7 +15,7 @@ h2{
     /*width:100%;*/
 }
 #login a{
-    font-size:17px; /*ÄNDRA!*/
+    font-size:13px; /*ÄNDRA!*/
     float:left;
     background-color:transparent;
     font-weight: 600;
@@ -23,7 +23,7 @@ h2{
 }
 .login_icon{
     /*display:block;    KANSKE inline-block*/
-    width:32px;
+    width:18px;
     float:left;
 }
 /*.float-right{
@@ -55,12 +55,12 @@ h2{
 }
 
 
-#question p{
+/*#question p{
     font-size:1.5em;
 }
 .question-text{
     display:inline;
-}
+}*/
 .help-text{
     display:inline;
 }

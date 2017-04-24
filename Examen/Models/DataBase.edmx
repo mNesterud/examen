@@ -39,6 +39,7 @@
           <Property Name="LogInFind" Type="decimal" Precision="18" Scale="0" />
           <Property Name="LogInClick" Type="decimal" Precision="18" Scale="0" />
           <Property Name="QStart" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BrowserType" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Response">
           <Key>
@@ -314,6 +315,7 @@
           <Property Name="LogInFind" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="LogInClick" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="QStart" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BrowserType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RQR">
           <Key>
@@ -450,6 +452,7 @@
           <EntitySetMapping Name="Respondents">
             <EntityTypeMapping TypeName="informatikexamenModel.Respondent">
               <MappingFragment StoreEntitySet="Respondent">
+                <ScalarProperty Name="BrowserType" ColumnName="BrowserType" />
                 <ScalarProperty Name="QStart" ColumnName="QStart" />
                 <ScalarProperty Name="LogInClick" ColumnName="LogInClick" />
                 <ScalarProperty Name="LogInFind" ColumnName="LogInFind" />

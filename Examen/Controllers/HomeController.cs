@@ -33,7 +33,7 @@ namespace Examen.Controllers
         {
             return View();
         }
-        public void SaveTime(string rID, string time, string timeType)
+        public void SaveTime(string rID, string time, string timeType, string browserType)
         {
             int id = Convert.ToInt16(rID);
             decimal theTime = decimal.Parse(time);
@@ -45,6 +45,7 @@ namespace Examen.Controllers
                 if (timeType.ToLower() == "loginfind")
                 {
                     r.LogInFind = theTime;
+                    r.BrowserType = browserType;
                     db.SaveChanges();
                 }
                 else if (timeType.ToLower() == "loginclick")
