@@ -9,6 +9,12 @@ function responseTime() {
     var time = current - start;
     return time;
 }
+function underlineQ(currentID) {
+    var lastMCId = JSON.parse(sessionStorage.getItem("lastMCId"));
+    if (currentID == lastMCId) {
+        $('#qText').addClass("last_mc_underline");
+    }
+}
 
 function killSession() {
     $.ajax({

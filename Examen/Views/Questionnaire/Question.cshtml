@@ -1,5 +1,5 @@
 ﻿@model Examen.Models.QuestionAndResponses
-<p class="question-text">@Model.Q.QuestionText</p>
+<p id="qText" class="question-text">@Model.Q.QuestionText</p>
 
 @if (Model.Q.MultipleChoise)
 {
@@ -60,8 +60,7 @@ else
 <script type="text/javascript">
 
     $(document).ready(startTime());
-
-
+    $(document).ready(underlineQ("@Model.Q.Id"));
 
     function SaveChoice() {
         var timeMs = responseTime();
@@ -96,4 +95,5 @@ else
             });
         }
     }
+    
 </script>
