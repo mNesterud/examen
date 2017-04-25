@@ -1,5 +1,7 @@
 ﻿@model Examen.Models.QuestionAndResponses
-<p id="qText" class="question-text">@Model.Q.QuestionText</p>
+<div id="questionTextLine">
+    <p id="qText" class="question-text">@Model.Q.QuestionText</p>
+</div>
 
 @if (Model.Q.MultipleChoise)
 {
