@@ -28,7 +28,15 @@
 .float-right{
     clear:right;
 }
-
+.link_btn{
+    padding: 10px;
+    display: block;
+    width: 80px;
+    background-color: cornflowerblue;
+    font-size: 1.2em;
+    color: white;
+    text-align: center;
+}
 
 
 
