@@ -1,0 +1,62 @@
+﻿h5 {
+    color:red;
+}
+h2{
+    color: red;
+}
+/*#body{
+    background: #efeeef url(../Images/clutter-bg.png) repeat;
+    min-height:500px;
+}*/
+
+#non_cluttered_bg{
+    /*background: #efeeef url(../Images/clutter-bg.png) no-repeat center;*/
+}
+
+
+#login{
+    float:left;
+    overflow:auto;
+    /*width:100%;*/
+}
+#login a{
+    font-size:13px; /*ÄNDRA!*/
+    float:left;
+    background-color:transparent;
+    font-weight: 600;
+    color: #999;
+}
+#login_btn{
+    border: 2px solid white;
+}
+
+#login_btn:hover{
+    background-color:transparent;
+}
+/*#cancel_btn:hover{
+    background-color:transparent;
+}*/
+.login_icon{
+    /*display:block;    KANSKE inline-block*/
+    width:18px;
+    float:left;
+}
+.last_mc_underline{
+    text-decoration:underline;
+}
+
+
+.next_button{
+
+}
+
+.clutted_div_blue{
+    width:80px;
+    height:40px;
+    background-color: #3a7bbe;
+}
+.clutted_div_yellow{
+    width:80px;
+    height:40px;
+    background-color: #ffdb1a;
+}

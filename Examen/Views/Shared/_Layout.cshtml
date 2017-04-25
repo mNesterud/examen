@@ -1,48 +1,87 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
-            </div>
-        </footer>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/javascript")
+    @Styles.Render(ViewBag.UIType)
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <img src="~/Images/mittuniversitetet_logo.png" id="miun-logga" />
+            </div>
+            <section id="login">
+                <a href="@Url.Action("Login", "Login")" id="login_link">
+                    Logga in
+                    <img src="@Url.Content("~/images/login-icon.png")" class="login_icon" />
+                </a>
+            </section>
+
+
+            <div class="float-right">
+                <nav>
+                    <ul id="menu">
+                        <li><a>Hem</a></li>
+                        <li><a>Om oss</a></li>
+                        <li><a>Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+            </div>
+        </div>
+    </footer>
+
+
+    @RenderSection("scripts", required: false)
+</body>
 </html>
+<script>
+    function sendTime(time_type) {
+        var timeMs = responseTime();
+        @using Examen.Models{
+            var respondentID = @(((Respondent)Session["Respondent"]).Id);
+        }
+
+        var bt = getBrowserType();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Home/SaveTime/',
+            data: { rID: respondentID, time: timeMs, timeType: time_type, browserType: bt},
+            success: function (result) {
+
+            }
+        });
+    }
+
+    function addClickEvent() {
+        var loginLink = document.getElementById("login_link");
+
+        loginLink.addEventListener("click", function(){
+            sendTime("loginfind")});
+
+    }
+    addClickEvent();
+
+
+
+</script>

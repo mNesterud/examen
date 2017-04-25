@@ -116,6 +116,7 @@ h5, h6 {
 
 header .content-wrapper {
     padding-top: 20px; 
+    overflow:auto;                              /*NYTT*/
 }
 
 footer {
@@ -452,8 +453,8 @@ textarea {
     input[type="submit"],
     input[type="button"],
     button {
-        background-color: #d3dce0;
-        border: 1px solid #787878;
+        /*background-color: #d3dce0;*/
+        /*border: 1px solid #787878;*/
         cursor: pointer;
         font-size: 1.2em;
         font-weight: 600;
@@ -462,13 +463,13 @@ textarea {
         width: auto;
     }
 
-    td input[type="submit"],
+    /*td input[type="submit"],
     td input[type="button"],
     td button {
         font-size: 1em;
         padding: 4px;
         margin-right: 4px;
-    }
+    }*/
 
 /* info and errors */
 .message-info {
@@ -596,7 +597,7 @@ tr.pager td {
     ----------------------------------------------------------*/
     header .float-left,
     header .float-right {
-        float: none;
+        /*float: none;*/
     }
 
     /* logo */
@@ -682,7 +683,7 @@ tr.pager td {
     }
 
         ol.round li {
-            padding-left: 10px;
+            /*padding-left: 10px;*/
             margin: 25px 0;
         }
 
@@ -696,7 +697,7 @@ tr.pager td {
             ol.round li.seven,
             ol.round li.eight,
             ol.round li.nine {
-                background: none;
+                /*background: none;*/
             }
 
      /* features */

@@ -1,0 +1,108 @@
+﻿@model Examen.Models.QuestionAndResponses
+<div id="questionTextLine">
+    <p id="qText" class="question-text">@Model.Q.QuestionText</p>
+</div>
+
+@if (Model.Q.MultipleChoise)
+{
+    <div id="responses">
+        @foreach (var r in Model.Responses)
+    {
+        <div class="qr_div">
+            <label class="qr_label">@Html.RadioButtonFor(m => m.SelectedResponseId, r.Id) @r.ResponseText</label>
+            
+        </div>
+    }
+    </div>
+    <input type="button" value="Föregående" class="next_button">
+    <input type="button" onclick="SaveChoice()" value="Nästa" class="next_button" id="next_button">
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('[name="SelectedResponseId"]').click(function(){
+                var nextBtn = document.getElementById("next_button");
+                nextBtn.className += " salient_button";
+            });
+        });
+    </script>
+}
+else
+{
+    if (ViewBag.UIType == "~/Content/GoodUIStylesheet.css")
+    {
+        <div id="responsesT">
+            <input type="text" id="textResponse" placeholder="@Model.Q.HelpText" />
+        </div>
+    }
+    else
+    {
+        <div id="responsesT">
+            <input type="text" id="textResponse" />
+        </div>
+    }
+    <input type="button" value="Föregående" class="next_button">
+    <input type="button" onclick="SaveText()" value="Nästa" class="next_button" id="next_button">
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var nextBtn = document.getElementById("next_button");
+            var textfield = document.getElementById("textResponse");
+            textfield.addEventListener("input", function(){
+                var text = $('#textResponse').val();
+                if(text != null && text != ""){
+                    if ( !nextBtn.className.match(/(?:^|\s)salient_button(?!\S)/) )
+                    {
+                        nextBtn.className += " salient_button";
+                    }
+                }
+                else{
+                    nextBtn.className = nextBtn.className.replace (/(?:^|\s)salient_button(?!\S)/g , '')
+                }
+            })
+        });
+    </script>
+}
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(startTime());
+    $(document).ready(underlineQ("@Model.Q.Id"));
+
+    function SaveChoice() {
+        var timeMs = responseTime();
+
+        var selected = $('[name="SelectedResponseId"]:checked').val();
+        if(selected != null)
+        {
+            $.ajax({
+                type: 'POST',
+                url: '/Questionnaire/SaveChoice/',
+                data: { rID: selected, qID: @Model.Q.Id, time: timeMs },
+                success: function (result) {
+                    NextQuestion(@Model.QNumber)
+                }
+            });
+        }
+    }
+    function SaveText() {
+
+        var timeMs = responseTime();
+
+        var text = $('#textResponse').val();
+        if(text != null && text != "")
+        {
+            $.ajax({
+                type: 'POST',
+                url: '/Questionnaire/SaveText/',
+                data: { t: text, qID: @Model.Q.Id, time: timeMs },
+                success: function (result) {
+                    NextQuestion(@Model.QNumber)
+                }
+            });
+        }
+    }
+    
+</script>

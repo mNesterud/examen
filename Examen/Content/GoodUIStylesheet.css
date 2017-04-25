@@ -1,0 +1,72 @@
+﻿h5 {
+    color:yellow;
+}
+h2{
+    color:yellow;
+}
+.login_button_corner{
+
+}
+
+
+#login{
+    float:right;
+    overflow:auto;
+    /*width:100%;*/
+}
+#login a{
+    font-size:13px; /*ÄNDRA!*/
+    float:left;
+    background-color:transparent;
+    font-weight: 600;
+    color: #999;
+}
+.login_icon{
+    /*display:block;    KANSKE inline-block*/
+    width:18px;
+    float:left;
+}
+/*.float-right{
+    clear:right;
+}*/
+
+
+#login_btn{
+    background-color: cornflowerblue;
+    color: white;
+    border: 2px solid cornflowerblue;
+
+}
+#login_btn:hover{
+    background-color: #4d88c4;
+}
+/*#cancel_btn{
+    RAM RUNT AVBRYT!
+    padding: 10px;
+    width:80px;
+    font-size: 1.2em;
+    text-align: center;
+}*/
+
+
+/*input[type=radio]:checked + label + div .qr_div + div #question + #next_button{
+    background-color:green;
+    opacity:1;
+    color:white;
+}*/
+.salient_button{
+    background-color:#458B00;
+    opacity:1;
+    color:white;
+}
+
+
+/*#question p{
+    font-size:1.5em;
+}
+.question-text{
+    display:inline;
+}*/
+.help-text{
+    display:inline;
+}

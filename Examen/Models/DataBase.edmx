@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="informatikexamenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionText" Type="nvarchar(max)" />
+          <Property Name="MultipleChoise" Type="bit" Nullable="false" />
+          <Property Name="HelpText" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="QuestionResponse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="ResponseID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Respondent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UITypeID" Type="int" Nullable="false" />
+          <Property Name="TotalTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="LogInFind" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="LogInClick" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QStart" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BrowserType" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Response">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResponseText" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RQR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RespondentID" Type="int" Nullable="false" />
+          <Property Name="QuestionResponseID" Type="int" Nullable="false" />
+          <Property Name="Time" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="RQT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RespondentID" Type="int" Nullable="false" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="Time" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="UIType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_QRID">
+          <End Role="QuestionResponse" Type="Self.QuestionResponse" Multiplicity="1" />
+          <End Role="RQR" Type="Self.RQR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionResponse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQR">
+              <PropertyRef Name="QuestionResponseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionId">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionResponse" Type="Self.QuestionResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionResponse">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionId_">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="RQT" Type="Self.RQT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQT">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respondent_ToUIType">
+          <End Role="UIType" Type="Self.UIType" Multiplicity="1" />
+          <End Role="Respondent" Type="Self.Respondent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UIType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Respondent">
+              <PropertyRef Name="UITypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RespondentId">
+          <End Role="Respondent" Type="Self.Respondent" Multiplicity="1" />
+          <End Role="RQR" Type="Self.RQR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Respondent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQR">
+              <PropertyRef Name="RespondentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RespondentId_">
+          <End Role="Respondent" Type="Self.Respondent" Multiplicity="1" />
+          <End Role="RQT" Type="Self.RQT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Respondent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQT">
+              <PropertyRef Name="RespondentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResponseId">
+          <End Role="Response" Type="Self.Response" Multiplicity="1" />
+          <End Role="QuestionResponse" Type="Self.QuestionResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Response">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionResponse">
+              <PropertyRef Name="ResponseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="informatikexamenModelStoreContainer">
+          <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionResponse" EntityType="Self.QuestionResponse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Respondent" EntityType="Self.Respondent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Response" EntityType="Self.Response" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RQR" EntityType="Self.RQR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RQT" EntityType="Self.RQT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UIType" EntityType="Self.UIType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_QRID" Association="Self.FK_QRID">
+            <End Role="QuestionResponse" EntitySet="QuestionResponse" />
+            <End Role="RQR" EntitySet="RQR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionId" Association="Self.FK_QuestionId">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionResponse" EntitySet="QuestionResponse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionId_" Association="Self.FK_QuestionId_">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="RQT" EntitySet="RQT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respondent_ToUIType" Association="Self.FK_Respondent_ToUIType">
+            <End Role="UIType" EntitySet="UIType" />
+            <End Role="Respondent" EntitySet="Respondent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RespondentId" Association="Self.FK_RespondentId">
+            <End Role="Respondent" EntitySet="Respondent" />
+            <End Role="RQR" EntitySet="RQR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RespondentId_" Association="Self.FK_RespondentId_">
+            <End Role="Respondent" EntitySet="Respondent" />
+            <End Role="RQT" EntitySet="RQT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResponseId" Association="Self.FK_ResponseId">
+            <End Role="Response" EntitySet="Response" />
+            <End Role="QuestionResponse" EntitySet="QuestionResponse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="informatikexamenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Questions" EntityType="informatikexamenModel.Question" />
+          <EntitySet Name="Responses" EntityType="informatikexamenModel.Response" />
+          <EntitySet Name="QuestionResponses" EntityType="informatikexamenModel.QuestionResponse" />
+          <AssociationSet Name="FK_QuestionId" Association="informatikexamenModel.FK_QuestionId">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionResponse" EntitySet="QuestionResponses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResponseId" Association="informatikexamenModel.FK_ResponseId">
+            <End Role="Response" EntitySet="Responses" />
+            <End Role="QuestionResponse" EntitySet="QuestionResponses" />
+          </AssociationSet>
+          <EntitySet Name="UITypes" EntityType="informatikexamenModel.UIType" />
+          <EntitySet Name="Respondents" EntityType="informatikexamenModel.Respondent" />
+          <EntitySet Name="RQRs" EntityType="informatikexamenModel.RQR" />
+          <EntitySet Name="RQTs" EntityType="informatikexamenModel.RQT" />
+          <AssociationSet Name="FK_QuestionId_" Association="informatikexamenModel.FK_QuestionId_">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="RQT" EntitySet="RQTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QRID" Association="informatikexamenModel.FK_QRID">
+            <End Role="QuestionResponse" EntitySet="QuestionResponses" />
+            <End Role="RQR" EntitySet="RQRs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respondent_ToUIType" Association="informatikexamenModel.FK_Respondent_ToUIType">
+            <End Role="UIType" EntitySet="UITypes" />
+            <End Role="Respondent" EntitySet="Respondents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RespondentId" Association="informatikexamenModel.FK_RespondentId">
+            <End Role="Respondent" EntitySet="Respondents" />
+            <End Role="RQR" EntitySet="RQRs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RespondentId_" Association="informatikexamenModel.FK_RespondentId_">
+            <End Role="Respondent" EntitySet="Respondents" />
+            <End Role="RQT" EntitySet="RQTs" />
+          </AssociationSet>
+          <EntitySet Name="Emails" EntityType="informatikexamenModel.Email" />
+          </EntityContainer>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MultipleChoise" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="QuestionResponses" Relationship="informatikexamenModel.FK_QuestionId" FromRole="Question" ToRole="QuestionResponse" />
+          <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_QuestionId_" FromRole="Question" ToRole="RQT" />
+          <Property Name="HelpText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Response">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResponseText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QuestionResponses" Relationship="informatikexamenModel.FK_ResponseId" FromRole="Response" ToRole="QuestionResponse" />
+        </EntityType>
+        <EntityType Name="QuestionResponse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="ResponseID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="informatikexamenModel.FK_QuestionId" FromRole="QuestionResponse" ToRole="Question" />
+          <NavigationProperty Name="Response" Relationship="informatikexamenModel.FK_ResponseId" FromRole="QuestionResponse" ToRole="Response" />
+          <NavigationProperty Name="RQRs" Relationship="informatikexamenModel.FK_QRID" FromRole="QuestionResponse" ToRole="RQR" />
+        </EntityType>
+        <Association Name="FK_QuestionId">
+          <End Type="informatikexamenModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="informatikexamenModel.QuestionResponse" Role="QuestionResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionResponse">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResponseId">
+          <End Type="informatikexamenModel.Response" Role="Response" Multiplicity="1" />
+          <End Type="informatikexamenModel.QuestionResponse" Role="QuestionResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Response">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionResponse">
+              <PropertyRef Name="ResponseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UIType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Respondents" Relationship="informatikexamenModel.FK_Respondent_ToUIType" FromRole="UIType" ToRole="Respondent" />
+        </EntityType>
+        <EntityType Name="Respondent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UITypeID" Type="Int32" Nullable="false" />
+          <Property Name="TotalTime" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="UIType" Relationship="informatikexamenModel.FK_Respondent_ToUIType" FromRole="Respondent" ToRole="UIType" />
+          <NavigationProperty Name="RQRs" Relationship="informatikexamenModel.FK_RespondentId" FromRole="Respondent" ToRole="RQR" />
+          <NavigationProperty Name="RQTs" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="Respondent" ToRole="RQT" />
+          <Property Name="LogInFind" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LogInClick" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QStart" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BrowserType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RQR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RespondentID" Type="Int32" Nullable="false" />
+          <Property Name="QuestionResponseID" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="QuestionResponse" Relationship="informatikexamenModel.FK_QRID" FromRole="RQR" ToRole="QuestionResponse" />
+          <NavigationProperty Name="Respondent" Relationship="informatikexamenModel.FK_RespondentId" FromRole="RQR" ToRole="Respondent" />
+        </EntityType>
+        <EntityType Name="RQT">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RespondentID" Type="Int32" Nullable="false" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Question" Relationship="informatikexamenModel.FK_QuestionId_" FromRole="RQT" ToRole="Question" />
+          <NavigationProperty Name="Respondent" Relationship="informatikexamenModel.FK_RespondentId_" FromRole="RQT" ToRole="Respondent" />
+        </EntityType>
+        <Association Name="FK_QuestionId_">
+          <End Type="informatikexamenModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="informatikexamenModel.RQT" Role="RQT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQT">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QRID">
+          <End Type="informatikexamenModel.QuestionResponse" Role="QuestionResponse" Multiplicity="1" />
+          <End Type="informatikexamenModel.RQR" Role="RQR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionResponse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQR">
+              <PropertyRef Name="QuestionResponseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respondent_ToUIType">
+          <End Type="informatikexamenModel.UIType" Role="UIType" Multiplicity="1" />
+          <End Type="informatikexamenModel.Respondent" Role="Respondent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UIType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Respondent">
+              <PropertyRef Name="UITypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RespondentId">
+          <End Type="informatikexamenModel.Respondent" Role="Respondent" Multiplicity="1" />
+          <End Type="informatikexamenModel.RQR" Role="RQR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Respondent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQR">
+              <PropertyRef Name="RespondentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RespondentId_">
+          <End Type="informatikexamenModel.Respondent" Role="Respondent" Multiplicity="1" />
+          <End Type="informatikexamenModel.RQT" Role="RQT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Respondent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RQT">
+              <PropertyRef Name="RespondentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="informatikexamenModelStoreContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="informatikexamenModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="HelpText" ColumnName="HelpText" />
+                <ScalarProperty Name="MultipleChoise" ColumnName="MultipleChoise" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Responses">
+            <EntityTypeMapping TypeName="informatikexamenModel.Response">
+              <MappingFragment StoreEntitySet="Response">
+                <ScalarProperty Name="ResponseText" ColumnName="ResponseText" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionResponses">
+            <EntityTypeMapping TypeName="informatikexamenModel.QuestionResponse">
+              <MappingFragment StoreEntitySet="QuestionResponse">
+                <ScalarProperty Name="ResponseID" ColumnName="ResponseID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UITypes">
+            <EntityTypeMapping TypeName="informatikexamenModel.UIType">
+              <MappingFragment StoreEntitySet="UIType">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Respondents">
+            <EntityTypeMapping TypeName="informatikexamenModel.Respondent">
+              <MappingFragment StoreEntitySet="Respondent">
+                <ScalarProperty Name="BrowserType" ColumnName="BrowserType" />
+                <ScalarProperty Name="QStart" ColumnName="QStart" />
+                <ScalarProperty Name="LogInClick" ColumnName="LogInClick" />
+                <ScalarProperty Name="LogInFind" ColumnName="LogInFind" />
+                <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
+                <ScalarProperty Name="UITypeID" ColumnName="UITypeID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RQRs">
+            <EntityTypeMapping TypeName="informatikexamenModel.RQR">
+              <MappingFragment StoreEntitySet="RQR">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="QuestionResponseID" ColumnName="QuestionResponseID" />
+                <ScalarProperty Name="RespondentID" ColumnName="RespondentID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RQTs">
+            <EntityTypeMapping TypeName="informatikexamenModel.RQT">
+              <MappingFragment StoreEntitySet="RQT">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="RespondentID" ColumnName="RespondentID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="informatikexamenModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

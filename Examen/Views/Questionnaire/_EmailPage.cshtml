@@ -1,0 +1,31 @@
+﻿@model Examen.Models.Email
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Fyll i din e-post nedan ifall du vill vara med i utlottningen om trisslott. 
+        E-posten du fyller i kommer inte vara möjlig att koppla till dig. 
+        Vi lagrar e-posten i databasen enbart tills vårterminens slut. Detta görs för att vi sedan ska kunna dra en vinnare.</h4>
+        <hr />
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Mail, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">E-post</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Mail, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Skicka in" class="btn btn-default" />
+                @Html.ActionLink("Nej tack", "ThankYou", "Questionnaire")
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

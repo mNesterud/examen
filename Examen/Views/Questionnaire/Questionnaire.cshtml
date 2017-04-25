@@ -1,0 +1,129 @@
+﻿@model Examen.Models.QuestionnaireModel
+
+@{
+    ViewBag.Title = "Questionnaire";
+
+}
+<script>
+
+</script>
+
+@*<section id="non_cluttered_bg">*@
+<section class="non_cluttered_bg">
+
+    <div id="question">
+    <h2>Enkät</h2>
+    <br />
+        
+        <div id="start_btn_div">
+            <table id="clutter_table">
+                <tr>
+                    <td class="clutted_div_yellow"></td>
+                    <td class="clutted_div_blue"></td>
+                    <td class=""></td>
+                </tr>
+                <tr>
+                    <td><input id="start_btn" type="button" value="Starta" /></td>
+                    <td class="clutted_div_yellow"></td>
+                    <td class="clutted_div_blue"></td>
+                </tr>
+                <tr>
+                    <td class="clutted_div_blue"></td>
+                    <td class=""></td>
+                    <td class="clutted_div_yellow"></td>
+                </tr>
+                <tr>
+                    <td class=""></td>
+                    <td class="clutted_div_yellow"></td>
+                    <td class="clutted_div_blue"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+    
+    $(document).ready(sessionStorage.setItem("lastMCId", @Model.LastMultipleChoiceId))
+
+    $(document).ready(startTime());
+
+
+    function addClickEvent() {
+        var loginBtn = document.getElementById("start_btn");
+
+        loginBtn.addEventListener("click", function () {
+            sendTime("qstart");
+            loadQuestion('1');
+            //$("#non_cluttered_bg").css("background", "none");
+            //$("#non_cluttered_bg").css("background-color", "#efeeef");
+        });
+
+    }
+    addClickEvent();
+
+    function loadQuestion(input) {
+        $.ajax({
+            url: '/Questionnaire/Question/',
+            contentType: 'application/html; charset=utf-8',
+            data: { id: input},
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#question').html(result);
+
+            }
+        });
+        $("#start_btn_div").hide();
+    }
+
+    function NextQuestion(input) {
+        var max = @(Model.AllQuestions.Count);
+        var next = input + 1;
+
+
+        if(next <=  max){
+            loadQuestion(next);
+        }
+        else{
+            goToEmailPage();
+        }
+    }
+
+    function goToEmailPage() {
+        $.ajax({
+            url: '/Questionnaire/EmailPage/',
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#question').html(result);
+            }
+        });
+    }
+    $( document ).ready(function() {
+        $("#login_link").text("JL4W8452");
+        $("#login_link").attr("href", "#");
+    });
+    @if (System.Web.HttpContext.Current.Session["LastLoadedQ"] != null)
+    {
+        if (System.Web.HttpContext.Current.Session["LastLoadedQ"] == "Email")
+        {
+            <text>
+    $(document).ready(goToEmailPage());
+    </text>
+
+        }
+        else
+        {
+            <text>
+    $(document).ready(loadQuestion(@System.Web.HttpContext.Current.Session["LastLoadedQ"]));
+    </text>
+        }
+
+
+    }
+
+</script>
+
