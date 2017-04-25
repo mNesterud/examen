@@ -32,15 +32,21 @@ h2{
 
 
 #login_btn{
-    padding: 10px;
-    display: block;
-    width: 80px;
     background-color: cornflowerblue;
-    font-size: 1.2em;
     color: white;
-    text-align: center;
-}
+    border: 2px solid cornflowerblue;
 
+}
+#login_btn:hover{
+    background-color: #4d88c4;
+}
+/*#cancel_btn{
+    RAM RUNT AVBRYT!
+    padding: 10px;
+    width:80px;
+    font-size: 1.2em;
+    text-align: center;
+}*/
 
 
 /*input[type=radio]:checked + label + div .qr_div + div #question + #next_button{
