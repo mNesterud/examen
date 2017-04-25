@@ -7,11 +7,7 @@
     {
         <div class="qr_div">
             <label class ="qr_label">@Html.RadioButtonFor(m => m.SelectedResponseId, r.Id) @r.ResponseText</label>
-            
-            
-            
-            @*@Html.Label(r.ResponseText, new { @class = "qr_label" })
-            <label for="MyValue_True">Yes, this is true</label>*@
+      
         </div>
     }
     <input type="button" value="Föregående" class="next_button">
@@ -30,11 +26,16 @@ else
 {
     if (ViewBag.UIType == "~/Content/GoodUIStylesheet.css")
     {
-        <p class="help-text">(@Model.Q.HelpText)</p>
+        <div>
+            <input type="text" id="textResponse" placeholder="@Model.Q.HelpText" />
+        </div>
     }
-    <div>
-        <input type="text" id="textResponse" />
-    </div>
+    else
+    {
+        <div>
+            <input type="text" id="textResponse" />
+        </div>
+    }
     <input type="button" value="Föregående" class="next_button">
     <input type="button" onclick="SaveText()" value="Nästa" class="next_button" id="next_button">
 
