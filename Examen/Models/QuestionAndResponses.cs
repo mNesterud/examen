@@ -16,7 +16,9 @@ namespace Examen.Models
         {
             using (DBEntities db = new DBEntities())
             {
-                List<Question> All = db.Questions.ToList();
+              
+                List<Question> All = db.Questions.Where(x => x.MultipleChoise == true).ToList();
+                All.AddRange(db.Questions.Where(x => x.MultipleChoise == false).ToList());
                 Q = All[Next - 1];
                 QNumber = Next;
 
