@@ -60,8 +60,6 @@
     text-align: center;
     border: 2px solid #e2e2e2;
 }
-
-
 #cancel_btn:hover{
     background-color:transparent;
 }
@@ -84,7 +82,21 @@
 
 
 #start_btn_div{
-    padding-top:300px;
+    padding-top:0px;
+}
+
+
+#clutter_table{
+    width:100%;
+}
+#clutter_table > tbody > tr > td{
+    width: 33.3%;
+    padding-right:0em;
+}
+#clutter_table > tbody > tr > td > #start_btn{
+    margin: 0;
+    width: 98%;
+    border: 2px solid #e2e2e2;
 }
 
 
@@ -104,7 +116,9 @@ h5{
 }
 
 
-
+#responses{
+    height:450px;
+}
 
 .qr_div{
     width:100%;
@@ -132,7 +146,7 @@ input[type=radio]{
 .non_cluttered_bg{
     margin:0 auto;
     width:50%;
-    padding: 10px 25px 25px 25px;
+    padding: 0px 20px 20px 20px; /*10 25 25 25*/
     background:white;
 }
 #h1_start_page{

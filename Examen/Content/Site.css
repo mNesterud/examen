@@ -463,13 +463,13 @@ textarea {
         width: auto;
     }
 
-    td input[type="submit"],
+    /*td input[type="submit"],
     td input[type="button"],
     td button {
         font-size: 1em;
         padding: 4px;
         margin-right: 4px;
-    }
+    }*/
 
 /* info and errors */
 .message-info {
