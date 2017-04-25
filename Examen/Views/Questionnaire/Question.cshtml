@@ -6,8 +6,12 @@
     foreach (var r in Model.Responses)
     {
         <div class="qr_div">
-            @Html.RadioButtonFor(m => m.SelectedResponseId, r.Id)@Html.Label(r.ResponseText, new { @class = "qr_label" })
-
+            <label class ="qr_label">@Html.RadioButtonFor(m => m.SelectedResponseId, r.Id) @r.ResponseText</label>
+            
+            
+            
+            @*@Html.Label(r.ResponseText, new { @class = "qr_label" })
+            <label for="MyValue_True">Yes, this is true</label>*@
         </div>
     }
     <input type="button" value="Föregående" class="next_button">
