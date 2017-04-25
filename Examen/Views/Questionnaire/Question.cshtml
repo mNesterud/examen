@@ -28,15 +28,15 @@ else
 {
     if (ViewBag.UIType == "~/Content/GoodUIStylesheet.css")
     {
-        <div>
+        <div id="responses">
             <input type="text" id="textResponse" placeholder="@Model.Q.HelpText" />
         </div>
     }
     else
     {
-        <div>
-        <input type="text" id="textResponse" />
-    </div>
+        <div id="responses">
+            <input type="text" id="textResponse" />
+        </div>
     }
     <input type="button" value="Föregående" class="next_button">
     <input type="button" onclick="SaveText()" value="Nästa" class="next_button" id="next_button">
