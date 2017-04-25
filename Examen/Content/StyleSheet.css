@@ -124,6 +124,9 @@ h5{
 #responses{
     height:310px;
 }
+#responsesT{
+    height:310px;
+}
 
 .qr_div{
     width:100%;
@@ -197,6 +200,11 @@ input[type=radio]{
     }
 }
 
+@media screen and (max-width: 415px){
+    #responsesT{
+        height:auto;
+    }
+}
 
 @media screen and (max-width: 380px){
     .non_cluttered_bg{
