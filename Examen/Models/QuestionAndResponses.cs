@@ -22,8 +22,6 @@ namespace Examen.Models
                 Q = All[Next - 1];
                 QNumber = Next;
 
-                //Q = db.Questions.Where(x => x.Id == QuestionId).FirstOrDefault();
-
                 Responses = new List<Response>();
                 foreach (QuestionResponse qr in db.QuestionResponses)
                 {
