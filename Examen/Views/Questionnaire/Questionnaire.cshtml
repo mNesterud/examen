@@ -13,7 +13,9 @@
     <h2>Enkät</h2>
     <br />
 
-    <input id="start_btn" type="button" value="Starta enkäten" />
+    <div id="start_btn_div">
+        <input id="start_btn" type="button" value="Starta enkäten" />
+    </div>
 
     <div id="question"></div>
 </section>
@@ -51,7 +53,7 @@
 
             }
         });
-        $("#start_btn").hide();
+        $("#start_btn_div").hide();
     }
 
     function NextQuestion(input) {
