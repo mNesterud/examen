@@ -16,8 +16,12 @@ namespace Examen.Models
 
         public QuestionnaireModel(bool EfficientUI)
         {
+            //List<Question> MCs = new List<Question>();
+            //List<Question> QTs = new List<Question>();
+
             using (DBEntities db = new DBEntities()){
-                AllQuestions = db.Questions.ToList();
+                AllQuestions = db.Questions.Where(x => x.MultipleChoise == true).ToList();
+                AllQuestions.AddRange(db.Questions.Where(x => x.MultipleChoise == false).ToList());
             }
 
             foreach (Question q in AllQuestions)
