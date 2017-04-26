@@ -12,7 +12,13 @@ h4{
     font-size: 1.3em;
     font-weight: normal;
 }
-
+.footer_mail{
+    font-size: 14px;
+}
+.mail_link{
+    font-weight: bold;
+    text-decoration: underline;
+}
 /*#login{
     float:right;
     overflow:auto;
