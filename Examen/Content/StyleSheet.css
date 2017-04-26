@@ -219,7 +219,16 @@ input[type=radio]{
 
 
 
-
+.clutted_div_blue{
+    width:80px;
+    height:40px;
+    /*background-color: #3a7bbe;*/
+}
+.clutted_div_yellow{
+    width:80px;
+    height:40px;
+    /*background-color: #ffdb1a;*/
+}
 
 
 
