@@ -67,6 +67,38 @@ h4{
 #cancel_btn:hover{
     background-color:transparent;
 }
+#no_thanks_btn{
+    text-decoration:none;
+    display:inline-block;
+    padding: 10px;
+    font-weight:600;
+    /*width:80px;*/
+    font-size: 1.2em;
+    text-align: center;
+    border: 2px solid #e2e2e2;
+}
+#no_thanks_btn:hover{
+    background-color:transparent;
+}
+#send_email{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    /* width: 80px; */
+    font-size: 1.2em;
+    text-align: center;
+    border: 2px solid #e2e2e2;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0px 10px 0px 0px;
+}
+.email_page_btns{
+    margin: 10px 0px 0px 0px;
+}
+#email_info_h4{
+    padding-top:10px;
+}
+
+
 
 
 #menu li:hover{
@@ -162,7 +194,7 @@ input[type=radio]{
     background:white;
 }
 #h1_start_page{
-    padding-top:20px;
+    /*padding-top:20px;*/
 }
 .h5_bullet{
     font-size:1.5em;
