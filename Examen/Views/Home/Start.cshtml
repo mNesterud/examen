@@ -21,45 +21,62 @@
     <section class="non_cluttered_bg">
 
         <div id="startDiv">
-            <h1 id="h1_start_page">Start</h1>
+            <h1 id="h1_start_page">Välkommen</h1>
             <h3 id="h3_start_page">Var god läs informationen nedan.</h3>
             <ol class="round">
                 <li class="one">
                     <h5 class="h5_bullet">Logga in</h5>
                     <p class="p_bullet_text">
-                        Efter att du klickat på "Starta enkät" nedan kommer du till en ny sida.
-                        Där börjar du med att klicka på "Logga in" för att komma till inloggningssidan.
-                        Du har fått ett genererat användarnamn och lösenord som är automatiskt ifyllt så det är bara att klicka på "Logga in".
+                        Att delta i studien är helt frivilligt och du har möjlighet att avbryta processen när du vill.
+                        Tack för att du deltar det betyder mycket för denna studie.
                     </p>
                     <br />
                 </li>
-
                 <li class="two">
-                    <h5 class="h5_bullet">Genomför enkät</h5>
+                    <h5 class="h5_bullet">Logga in</h5>
                     <p class="p_bullet_text">
-                        Svara på frågorna i enkäten. Vi lagrar <u><b>ingen</b></u> information om dig,
-                        men svaren du ger är viktiga för studien.
+                        Efter att du klickat på "Starta enkät" nedan kommer du till en ny sida.
+                        Där börjar du med att klicka på "Logga in" för att komma till inloggningssidan.
+                        Du har fått ett genererat användarnamn och lösenord som är automatiskt ifyllt så det är bara att gå vidare.
                     </p>
                     <br />
                 </li>
 
                 <li class="three">
+                    <h5 class="h5_bullet">Genomför enkät</h5>
+                    <p class="p_bullet_text">
+                        Svara på frågorna i enkäten. <u><b>Ingen</b></u> information som lagras kan kopplas till dig som person
+                        men svaren du ger är viktiga för studien. Insamlad data lagras krypterat i en databas som kommer tömmas efter vårterminens slut.
+                    </p>
+                    <br />
+                </li>
+
+                <li class="four">
                     <h5 class="h5_bullet">Vinn trisslott!</h5>
                     <p class="p_bullet_text">
-                        Efter enkäten är genomförd får du <i>frivilligt</i> fylla i din e-post ifall
-                        du vill vara med i utlottningen av trisslott.
+                        När enkäten är genomförd får du möjlighet att fylla i din e-post ifall
+                        du vill vara med i utlottningen av en trisslott. E-posten kopplas inte på något sätt till enkätsvaren.
                     </p>
                     <br />
                 </li>
             </ol>
-            @*@Html.ActionLink("Starta enkät", "Index", "Home", null, null)*@
             <input type="button" onclick="newWindow('Home/Index')" value="Starta enkät" />
         </div>
         <div id="thankU" hidden="hidden">
             <h2>TACK!</h2>
-            <h5>För att du hjälper oss med vår kandidatexamen i informatik.</h5>
+            <h5>För att du hjälper oss med vår kandidatexamen i informatik på mittuniversitetet.</h5>
         </div>
     </section>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="footer_mail">Vid frågor kontakta:</p>
+                <a class="footer_mail mail_link" href="mailto:mrne1400@student.miun.se?Subject=Enkät" target="blank">Mårten Nesterud</a>
+                <br />
+                <a class="footer_mail mail_link" href="mailto:ansv1410@student.miun.se?subject=Enkät" target="blank">Andreas Svanlund</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
 

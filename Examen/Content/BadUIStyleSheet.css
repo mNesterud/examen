@@ -1,9 +1,9 @@
-﻿h5 {
+﻿/*h5 {
     color:red;
 }
 h2{
     color: red;
-}
+}*/
 /*#body{
     background: #efeeef url(../Images/clutter-bg.png) repeat;
     min-height:500px;
@@ -51,12 +51,12 @@ h2{
 }
 
 .clutted_div_blue{
-    width:80px;
-    height:40px;
+    /*width:80px;
+    height:40px;*/
     background-color: #3a7bbe;
 }
 .clutted_div_yellow{
-    width:80px;
-    height:40px;
+    /*width:80px;
+    height:40px;*/
     background-color: #ffdb1a;
 }

@@ -257,6 +257,7 @@ section.feature {
 ol.round {
     list-style-type: none;
     padding-left: 0;
+    padding-top:1px;
 }
 
     ol.round li {
