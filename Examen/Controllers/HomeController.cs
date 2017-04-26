@@ -11,7 +11,7 @@ namespace Examen.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Vad trevligt att du vill genomföra enkäten. Tack för att du stöttar vårt examensarbete!";
+            ViewBag.Message = "Tack för att du stöttar denna studie!";
 
             return View();
         }
