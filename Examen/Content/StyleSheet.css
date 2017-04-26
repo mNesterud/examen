@@ -137,7 +137,6 @@ h4{
 
 
 
-
 /*h5{
     color:forestgreen;
 }*/
@@ -168,7 +167,7 @@ h4{
     width:100%;
     /*min-width:280px;*/
     margin:0 auto;
-    overflow:auto;
+    overflow:hidden; /*VAR atuo*/
     padding:15px 0px 0px 7px;
     min-height:30px;/*ENBART FÖR ATT DET ÄR transform:scale(1.5) på radiobuttons*/ /*var vara HEIGHT, men MIN-HEIGHT visar längre svar på flera rader*/
 }
@@ -261,6 +260,10 @@ input[type=radio]{
     .float-right{
         float:left;
         margin-top:10px;
+    }
+    .non_cluttered_bg{
+        width:96%;
+        padding:0px 0px 20px 0px;
     }
 }
 
