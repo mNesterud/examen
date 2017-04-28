@@ -29,10 +29,10 @@ namespace Examen.Controllers
 
             return View();
         }
-        public ActionResult Start()
-        {
-            return View();
-        }
+        //public ActionResult Start()
+        //{
+        //    return View();
+        //}
         public void SaveTime(string rID, string time, string timeType, string browserType)
         {
             int id = Convert.ToInt16(rID);
