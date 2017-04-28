@@ -25,11 +25,20 @@ function killSession() {
         }
     });
 }
-function preventUnload() {
-    window.addEventListener("onbeforeunload", function () {
-        return "uppdatering är låst";
+function preKillSession() {
+    $.ajax({
+        type: 'POST',
+        url: '/Start/PreKillSession/',
+        success: function (result) {
+
+        }
     });
 }
+//function preventUnload() {
+//    window.addEventListener("onbeforeunload", function () {
+//        return "uppdatering är låst";
+//    });
+//}
 
 function getBrowserType() {
     var agent = navigator.userAgent;

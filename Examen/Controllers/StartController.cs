@@ -13,5 +13,10 @@ namespace Examen.Controllers
         {
             return View();
         }
+        public void PreKillSession()
+        {
+            System.Web.HttpContext.Current.Session.Remove("Respondent");
+            System.Web.HttpContext.Current.Session.Remove("LastLoadedQ");
+        }
     }
 }

@@ -30,15 +30,15 @@ namespace Examen
 
 
 
-            string uiType = "";
-            using (DBEntities db = new DBEntities())
-            {
+            //string uiType = "";
+            //using (DBEntities db = new DBEntities())
+            //{
 
-                UIType ui = new UIType();
-                ui = db.UITypes.OrderBy(x => x.Count).FirstOrDefault();
-                uiType = ui.Name;
+            //    UIType ui = new UIType();
+            //    ui = db.UITypes.OrderBy(x => x.Count).FirstOrDefault();
+            //    uiType = ui.Name;
 
-            }
+            //}
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/site.css",

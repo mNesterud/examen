@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Enkät";
-    Layout = null;
+    //Layout = null;
 }
 
 <!DOCTYPE html>
@@ -81,7 +81,7 @@
 </html>
 
 <script>
-    $(document).ready(killSession());
+    $(document).ready(preKillSession());
     function newWindow(url) {
         window.open(url, 'window', 'toolbar=no, menubar=no, resizable=yes');
         $("#startDiv").hide();
